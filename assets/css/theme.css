@@ -116,3 +116,9 @@
 	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);  /* "Power2.out" equivalent */
 	--duration-normal: 0.6s;                      /* Default animation duration */
 }
+
+/* Make the "Studies" subheading bold and slightly larger */
+.title.studies {
+  font-weight: 850;
+  font-size: 40px; /* ~20px — change as needed */
+}
