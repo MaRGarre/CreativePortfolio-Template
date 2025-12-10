@@ -81,6 +81,73 @@
 }
 
 /* --------------------------------------------------------------------------
+   UNDERLINE HOVER
+   ---------------------------------------------------------------------------*/
+
+/* Nav link underline hover (applies to Home / About / Projects / Contact) */
+.nav-links a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  padding-bottom: 6px;
+  display: inline-block;
+}
+
+.nav-links a::after,
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  /* single color line */
+  background: #f461a3;
+  bottom: -4px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s ease-out, opacity .35s ease-out;
+  opacity: 1;
+}
+
+.nav-links a::before {
+  top: -4px;
+  bottom: auto;
+  transform-origin: left;
+  opacity: 0; /* keep top line hidden by default */
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus::after,
+.nav-links a:hover::before,
+.nav-links a:focus::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Keep a small utility for any elements using .hover-underline */
+.hover-underline {
+  position: relative;
+  display: inline-block;
+}
+.hover-underline::after,
+.hover-underline::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  /* single color line */
+  background: #f461a3;
+  left: 0;
+  bottom: -4px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .35s ease-out;
+}
+.hover-underline::before { top: -4px; transform-origin: left; }
+.hover-underline:hover::after,
+.hover-underline:hover::before { transform: scaleX(1); }
+
+/* --------------------------------------------------------------------------
    HOLOGRAPHIC BUTTON EFFECT
    ---------------------------------------------------------------------------*/
 
@@ -114,7 +181,7 @@
 }
 
 .holographic-card h2 {
-  color: #0ff;
+  color: rgb(255, 0, 0);
   font-size: 2rem;
   position: relative;
   z-index: 2;
@@ -131,7 +198,7 @@
     0deg, 
     transparent, 
     transparent 30%, 
-    rgba(0,255,255,0.3)
+    rgba(255, 0, 0, 0.3)
   );
   transform: rotate(-45deg);
   transition: all 0.5s ease;
@@ -140,7 +207,7 @@
 
 .holographic-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0,255,255,0.5);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
 }
 
 .holographic-card:hover::before {
@@ -372,7 +439,7 @@
    1. Parent has [data-reveal-stagger] attribute
    2. All children start invisible (opacity: 0, translateY)
    3. When parent gets .revealed class, children animate with increasing delays
-   4. transition-delay creates the stagger: 0.1s, 0.2s, 0.3s, etc.
+   4. transition-delay creates the stagger: 0.1s, 0.2s, 0.3s, 0.4s, etc.
 
    💡 DATA ATTRIBUTES:
    We use data-* attributes instead of classes because:
@@ -488,4 +555,38 @@
 		flex-direction: column;
 		gap: var(--space-md);
 	}
+}
+
+/* --------------------------------------------------------------------------
+   STUDIES LIST (logos next to study names)
+   --------------------------------------------------------------------------*/
+.studies {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.study-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.study-logo {
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+@media (max-width: 640px) {
+  .study-logo {
+    width: 96px;
+    height: 96px;
+  }
+}
+.study-info .study-name {
+  font-weight: 600;
+}
+.study-info .study-status {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
 }
