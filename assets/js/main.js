@@ -461,6 +461,7 @@ function initCardLightbox() {
 	});
 }
 
+
 // ==========================================================================
 // 6. INITIALIZATION
 // ==========================================================================
@@ -506,105 +507,8 @@ document.addEventListener('DOMContentLoaded', () => {
  * For traditional multi-page sites, this isn't needed (page reload cleans up).
  */
 window.cleanupScrollObservers = () => {
-	singleObserver.disconnect();  // Stop observing all elements
-	staggerObserver.disconnect();
-	console.log('🧹 Observers cleaned up');
+    singleObserver.disconnect();  // Stop observing all elements
+    staggerObserver.disconnect();
+    console.log('🧹 Observers cleaned up');
 };
 
-// Trail effect following the mouse cursor (replaced)
-// Replaced the previous 'dots' implementation with a canvas-based
-// red line that follows the cursor. Respects user "prefers-reduced-motion".
-(function initMouseTrail() {
-  // Respect reduced motion preference
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return;
-
-  // Create full-screen canvas overlay
-  const canvas = document.createElement('canvas');
-  canvas.className = 'mouse-trail-canvas';
-  canvas.style.position = 'fixed';
-  canvas.style.top = '0';
-  canvas.style.left = '0';
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
-  canvas.style.pointerEvents = 'none';
-  canvas.style.zIndex = '9999';
-  document.body.appendChild(canvas);
-
-  const ctx = canvas.getContext('2d');
-  let width = 0;
-  let height = 0;
-  let dpr = window.devicePixelRatio || 1;
-
-  function resizeCanvas() {
-    dpr = window.devicePixelRatio || 1;
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-    // Reset transform to avoid accumulated scaling
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
-  }
-
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  // Keep a sliding window of recent pointer positions
-  const maxPoints = 80;
-  const points = [];
-
-  window.addEventListener('mousemove', (e) => {
-    // Use client coordinates so canvas overlay lines up with viewport
-    points.push({ x: e.clientX, y: e.clientY, t: Date.now() });
-    if (points.length > maxPoints) points.shift();
-  });
-
-  // Also capture touch moves for mobile
-  window.addEventListener('touchmove', (e) => {
-    if (!e.touches || e.touches.length === 0) return;
-    const t = e.touches[0];
-    points.push({ x: t.clientX, y: t.clientY, t: Date.now() });
-    if (points.length > maxPoints) points.shift();
-  }, { passive: true });
-
-  // Draw loop: render fading red line through recent points
-  function draw() {
-    // Clear with full transparency
-    ctx.clearRect(0, 0, width, height);
-
-    if (points.length < 2) {
-      requestAnimationFrame(draw);
-      return;
-    }
-
-    // Draw a smooth path using quadratic curves
-    ctx.lineWidth = 3;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    // We will draw multiple segments with varying alpha to create a fade
-    for (let i = 0; i < points.length - 1; i++) {
-      const p0 = points[i];
-      const p1 = points[i + 1];
-
-      // Older segments are more transparent
-      const alpha = (i / points.length) * 0.9 + 0.1; // range ~0.1 - 1.0
-      ctx.strokeStyle = `rgba(231,19,19,${alpha.toFixed(3)})`; // red color
-
-      ctx.beginPath();
-      // Simple smoothing: use midpoint for quadratic control point
-      const cx = (p0.x + p1.x) / 2;
-      const cy = (p0.y + p1.y) / 2;
-      ctx.moveTo(p0.x, p0.y);
-      ctx.quadraticCurveTo(cx, cy, p1.x, p1.y);
-      ctx.stroke();
-    }
-
-    requestAnimationFrame(draw);
-  }
-
-  requestAnimationFrame(draw);
-})();
