@@ -386,12 +386,16 @@
    MOUSE TRAIL EFFECT
    -------------------------------------------------------------------------- */
 
-.trail { /* className for the trail elements */
-    position: absolute;
-    height: 6px; width: 6px;
-    border-radius: 3px;
-    background: teal;
-  }
+#trailCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* para que no bloquee enlaces, scroll, botones, etc */
+    z-index: 9999;        /* asegura que está encima, pero sin interactuar */
+}
+
 
 /* --------------------------------------------------------------------------
    9. Contact Section

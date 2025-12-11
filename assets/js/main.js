@@ -512,3 +512,59 @@ window.cleanupScrollObservers = () => {
     console.log('🧹 Observers cleaned up');
 };
 
+const canvas = document.getElementById("trailCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let points = []; // historial del ratón
+const maxTrail = 30; // 🔥 alarga la cola aumentando este número
+
+window.addEventListener("mousemove", (e) => {
+    points.push({ x: e.clientX, y: e.clientY });
+
+    // Mantiene la cola con la longitud máxima
+    if (points.length > maxTrail) {
+        points.shift();
+    }
+});
+
+function draw() {
+    requestAnimationFrame(draw);
+
+    // 🔥 Limpia completamente el canvas (NO se queda nada dibujado)
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Si no hay suficientes puntos, no dibuja
+    if (points.length < 2) return;
+
+    ctx.lineWidth = 8;
+    ctx.lineCap = "round";
+
+    // Dibuja el trail
+    for (let i = 1; i < points.length; i++) {
+        const p1 = points[i - 1];
+        const p2 = points[i];
+
+        // Opacidad gradual para que la cola se desvanezca suavemente
+        const alpha = i / points.length;
+
+        ctx.strokeStyle = `rgba(255, 0, 0, ${alpha})`;
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+    }
+}
+
+draw();
+
+
+
+
