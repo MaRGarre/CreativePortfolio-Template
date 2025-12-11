@@ -7,7 +7,7 @@
 	left: 0;
 	right: 0;
 	z-index: 100;
-	background: rgba(14, 158, 224, 0.9);
+	background: rgba(201, 13, 13, 0.9);
 	backdrop-filter: blur(10px);
 	padding: var(--space-md) 0;
 }

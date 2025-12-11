@@ -100,8 +100,10 @@
 	--color-bg-alt: #1a1a1a;          /* Slightly lighter for depth/sections */
 	--color-text: #f5f5f5;            /* Off-white for readability (not pure white) */
 	--color-text-muted: #ffffff;      /* Subdued text for secondary content */
-	--color-accent: #ec4b81;          /* Indigo — primary brand color */
+	--color-accent: #000000;          /* Indigo — primary brand color */
 	--color-accent-hover: #818cf8;    /* Lighter indigo for hover states */
+	--color-skill-fill: #e71313;      /* Skill bar fill color (always red) */
+	--color-nav: rgba(201, 13, 13, 0.9); /* Navigation background / primary red */
 
 	/*
 	 * ANIMATION TOKENS

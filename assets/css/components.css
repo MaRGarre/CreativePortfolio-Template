@@ -75,7 +75,7 @@
 .skill-fill {
 	height: 100%;
 	width: 0;
-	background: var(--color-accent);
+	background: var(--color-skill-fill); /* use dedicated skill color, not --color-accent */
 	border-radius: 3px;
 	transition: width 1s var(--ease-out) 0.3s;
 }
@@ -101,7 +101,7 @@
   width: 100%;
   height: 2px;
   /* single color line */
-  background: #f461a3;
+  background: #000000;
   bottom: -4px;
   transform: scaleX(0);
   transform-origin: right;
@@ -146,6 +146,67 @@
 .hover-underline::before { top: -4px; transform-origin: left; }
 .hover-underline:hover::after,
 .hover-underline:hover::before { transform: scaleX(1); }
+
+/* --------------------------------------------------------------------------
+   FLIP CARDS
+   ---------------------------------------------------------------------------*/
+
+.card {
+  width: 200px;
+  height: 250px;
+  margin: 1rem auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+}
+
+.card-front {
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.card-back {
+  background: var(--color-nav);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+
+/* --------------------------------------------------------------------------
+   Ensure active nav link shows the same underline/overline as hover and uses the active color
+   -------------------------------------------------------------------------- */
+.nav-links a.active {
+  color: var(--color-accent);
+}
+
+.nav-links a.active::after,
+.nav-links a.active::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
 
 /* --------------------------------------------------------------------------
    HOLOGRAPHIC BUTTON EFFECT
@@ -254,21 +315,31 @@
 	}
 }
 
+/* Add an extra column on very wide screens so the fourth card sits at the far right */
+@media (min-width: 1280px) {
+	.projects-grid {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
 .project-card {
-	background: var(--color-bg-alt);
-	border-radius: 16px;
-	overflow: hidden;
-	transition: transform 0.3s, box-shadow 0.3s;
+	background: transparent; /* remove boxed background */
+	border-radius: 0; /* no rounded container */
+	overflow: visible; /* let the card edges show */
+	transition: none; /* remove container hover */
+	box-shadow: none;
+	padding: 0;
 }
 
 .project-card:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+	transform: none;
+	box-shadow: none;
 }
 
 .project-image {
-	aspect-ratio: 4/3;
-	overflow: hidden;
+	/* Allow flip card to define size and not be clipped by container */
+	aspect-ratio: auto;
+	overflow: visible;
 }
 
 .project-image img {
@@ -279,7 +350,7 @@
 }
 
 .project-card:hover .project-image img {
-	transform: scale(1.05);
+	transform: none; /* keep flip card hover handling, avoid extra image scale */
 }
 
 .project-content {
@@ -310,6 +381,17 @@
 	border-radius: 4px;
 	color: var(--color-accent);
 }
+
+/* --------------------------------------------------------------------------
+   MOUSE TRAIL EFFECT
+   -------------------------------------------------------------------------- */
+
+.trail { /* className for the trail elements */
+    position: absolute;
+    height: 6px; width: 6px;
+    border-radius: 3px;
+    background: teal;
+  }
 
 /* --------------------------------------------------------------------------
    9. Contact Section
@@ -589,4 +671,84 @@
 .study-info .study-status {
   color: var(--color-text-muted);
   font-size: 0.95rem;
+}
+
+/* Intrinsic sizing: let specific cards size to their image */
+.project-image--intrinsic {
+	display: inline-block;
+	width: auto;
+	max-width: 100%;
+}
+
+/* Make intrinsic card act like a normal flip card but scale to image width */
+.card--intrinsic {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	max-width: 420px; /* cap width so it doesn't get huge */
+	perspective: 1200px;
+}
+
+.card--intrinsic .card-inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transition: transform 0.6s;
+	transform-style: preserve-3d;
+}
+
+.card--intrinsic:hover .card-inner,
+.card--intrinsic:focus .card-inner {
+	transform: rotateY(180deg);
+}
+
+.card--intrinsic .card-front,
+.card--intrinsic .card-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: inherit;
+	overflow: hidden;
+}
+
+.card--intrinsic .card-front img {
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+	display: block;
+}
+
+.card--intrinsic .card-back {
+	background: var(--color-nav);
+	transform: rotateY(180deg);
+}
+
+/* Simple lightbox for viewing card images */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+  z-index: 2000;
+  padding: var(--space-lg);
+  box-sizing: border-box;
+  cursor: zoom-out;
+}
+
+.lightbox-modal img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  display: block;
+}
+
+.lightbox-modal.hidden {
+  display: none;
 }

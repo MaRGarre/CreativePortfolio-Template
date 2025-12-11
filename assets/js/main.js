@@ -1,4 +1,3 @@
-
 /**
  * ==========================================================================
  * GRADE 1: VANILLA JAVASCRIPT PORTFOLIO DEMO
@@ -306,11 +305,15 @@ function initActiveNav() {
 			if (entry.isIntersecting) {
 				const id = entry.target.getAttribute('id');
 
-				// Update all nav links: highlight matching, reset others
+				// Update all nav links: add .active to matching, remove from others
 				navLinks.forEach((link) => {
-					link.style.color = link.getAttribute('href') === `#${id}`
-						? 'var(--color-accent)'  // Highlighted color
-						: '';                     // Reset to default (inherits from CSS)
+					if (link.getAttribute('href') === `#${id}`) {
+						link.classList.add('active');
+						link.setAttribute('aria-current', 'true');
+					} else {
+						link.classList.remove('active');
+						link.removeAttribute('aria-current');
+					}
 				});
 			}
 		});
@@ -321,7 +324,145 @@ function initActiveNav() {
 }
 
 // ==========================================================================
-// 5. INITIALIZATION
+// 5. INTRINSIC CARDS SIZING
+// ==========================================================================
+
+/**
+ * Ensure intrinsic flip cards size to their image's displayed dimensions.
+ *
+ * 🎓 WHY INTRINSIC SIZING?
+ * For flip cards that reveal content on hover, we want the card size
+ * to be based on the image size. This provides a consistent and natural
+ * flipping experience, as the content will not overflow or be cut off.
+ *
+ * 📐 THE APPROACH:
+ * 1. Select all cards with the class .card--intrinsic
+ * 2. For each card, find the image and measure its displayed size
+ * 3. Set the card's width/height to match the image's size
+ * 4. Ensure the inner content and both sides of the card (front/back)
+ *    also stretch to fill the card size
+ */
+function initIntrinsicCards() {
+	const intrinsicCards = document.querySelectorAll('.card--intrinsic');
+	if (!intrinsicCards.length) return;
+
+	function sizeCard(card) {
+		const img = card.querySelector('img');
+		const inner = card.querySelector('.card-inner');
+		const fronts = card.querySelectorAll('.card-front, .card-back');
+		if (!img) return;
+
+		// Use the displayed size of the image
+		const rect = img.getBoundingClientRect();
+		if (rect.width === 0 || rect.height === 0) return;
+
+		card.style.width = Math.round(rect.width) + 'px';
+		card.style.height = Math.round(rect.height) + 'px';
+
+		if (inner) {
+			inner.style.width = '100%';
+			inner.style.height = '100%';
+		}
+
+		fronts.forEach((el) => {
+			el.style.width = '100%';
+			el.style.height = '100%';
+		});
+	}
+
+	// Initial sizing when images are loaded
+	intrinsicCards.forEach((card) => {
+		const img = card.querySelector('img');
+		if (!img) return;
+
+		if (img.complete) {
+			sizeCard(card);
+		} else {
+			img.addEventListener('load', () => sizeCard(card));
+		}
+	});
+
+	// Recompute on window resize
+	window.addEventListener('resize', () => {
+		intrinsicCards.forEach((card) => sizeCard(card));
+	});
+}
+
+// ==========================================================================
+// 6. CARD LIGHTBOX MODAL
+// ==========================================================================
+
+/**
+ * Open a lightbox modal showing a larger version of the card image.
+ *
+ * 🎓 WHY A LIGHTBOX?
+ * A lightbox focuses the user's attention on the image, providing a
+ * distraction-free view. It's a common pattern for image galleries.
+ *
+ * 📐 THE FLOW:
+ * 1. Create a modal element and add it to the document
+ * 2. Define openLightbox() and closeLightbox() functions
+ * 3. openLightbox() sets the image src/alt and shows the modal
+ * 4. closeLightbox() hides the modal and clears the image src
+ * 5. Close the modal on overlay click or Escape key
+ */
+function initCardLightbox() {
+	let modal = document.createElement('div');
+	modal.className = 'lightbox-modal hidden';
+	modal.setAttribute('tabindex', '-1');
+	modal.innerHTML = '<img alt="" />';
+	document.body.appendChild(modal);
+
+	function openLightbox(imgSrc, imgAlt) {
+		const img = modal.querySelector('img');
+		img.src = imgSrc;
+		img.alt = imgAlt || '';
+		modal.classList.remove('hidden');
+		modal.focus();
+	}
+
+	function closeLightbox() {
+		modal.classList.add('hidden');
+		modal.querySelector('img').src = '';
+	}
+
+	// Close on overlay click
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) closeLightbox();
+	});
+
+	// Close on Escape
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') closeLightbox();
+	});
+
+	// Attach handlers to each card so click works whether front or back is visible
+	document.querySelectorAll('.card').forEach((card) => {
+		const img = card.querySelector('.card-front img');
+		if (!img) return; // nothing to open
+
+		// Click anywhere on the card opens the lightbox with the front image
+		card.addEventListener('click', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			openLightbox(img.src, img.alt);
+		});
+
+		// Support keyboard activation: Enter or Space
+		card.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				openLightbox(img.src, img.alt);
+			}
+		});
+
+		// Make sure the cursor indicates clickability
+		card.style.cursor = 'zoom-in';
+	});
+}
+
+// ==========================================================================
+// 6. INITIALIZATION
 // ==========================================================================
 
 /**
@@ -339,12 +480,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	initScrollAnimations();
 	initSmoothScroll();
 	initActiveNav();
+	initIntrinsicCards();
+	initCardLightbox();
 
 	console.log('🚀 Grade 1 Demo: Vanilla scroll animations initialized');
 });
 
 // ==========================================================================
-// 6. CLEANUP (FOR SPA ENVIRONMENTS)
+// 7. CLEANUP (FOR SPA ENVIRONMENTS)
 // ==========================================================================
 
 /**
@@ -367,3 +510,101 @@ window.cleanupScrollObservers = () => {
 	staggerObserver.disconnect();
 	console.log('🧹 Observers cleaned up');
 };
+
+// Trail effect following the mouse cursor (replaced)
+// Replaced the previous 'dots' implementation with a canvas-based
+// red line that follows the cursor. Respects user "prefers-reduced-motion".
+(function initMouseTrail() {
+  // Respect reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  // Create full-screen canvas overlay
+  const canvas = document.createElement('canvas');
+  canvas.className = 'mouse-trail-canvas';
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = '9999';
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  let width = 0;
+  let height = 0;
+  let dpr = window.devicePixelRatio || 1;
+
+  function resizeCanvas() {
+    dpr = window.devicePixelRatio || 1;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    // Reset transform to avoid accumulated scaling
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+  }
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  // Keep a sliding window of recent pointer positions
+  const maxPoints = 80;
+  const points = [];
+
+  window.addEventListener('mousemove', (e) => {
+    // Use client coordinates so canvas overlay lines up with viewport
+    points.push({ x: e.clientX, y: e.clientY, t: Date.now() });
+    if (points.length > maxPoints) points.shift();
+  });
+
+  // Also capture touch moves for mobile
+  window.addEventListener('touchmove', (e) => {
+    if (!e.touches || e.touches.length === 0) return;
+    const t = e.touches[0];
+    points.push({ x: t.clientX, y: t.clientY, t: Date.now() });
+    if (points.length > maxPoints) points.shift();
+  }, { passive: true });
+
+  // Draw loop: render fading red line through recent points
+  function draw() {
+    // Clear with full transparency
+    ctx.clearRect(0, 0, width, height);
+
+    if (points.length < 2) {
+      requestAnimationFrame(draw);
+      return;
+    }
+
+    // Draw a smooth path using quadratic curves
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    // We will draw multiple segments with varying alpha to create a fade
+    for (let i = 0; i < points.length - 1; i++) {
+      const p0 = points[i];
+      const p1 = points[i + 1];
+
+      // Older segments are more transparent
+      const alpha = (i / points.length) * 0.9 + 0.1; // range ~0.1 - 1.0
+      ctx.strokeStyle = `rgba(231,19,19,${alpha.toFixed(3)})`; // red color
+
+      ctx.beginPath();
+      // Simple smoothing: use midpoint for quadratic control point
+      const cx = (p0.x + p1.x) / 2;
+      const cy = (p0.y + p1.y) / 2;
+      ctx.moveTo(p0.x, p0.y);
+      ctx.quadraticCurveTo(cx, cy, p1.x, p1.y);
+      ctx.stroke();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  requestAnimationFrame(draw);
+})();
