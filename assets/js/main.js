@@ -461,6 +461,63 @@ function initCardLightbox() {
 	});
 }
 
+// -------------------------------------------------------------------------
+// PROJECT FILTERING
+// -------------------------------------------------------------------------
+function initProjectFilters() {
+    const filterBar = document.querySelector('.projects-filters');
+    if (!filterBar) return;
+
+    const buttons = Array.from(filterBar.querySelectorAll('.filter-btn'));
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+
+    function setActiveButton(activeBtn) {
+        buttons.forEach(btn => {
+            const isActive = btn === activeBtn;
+            btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+    }
+
+    function applyFilter(filter) {
+        cards.forEach(card => {
+            const category = (card.dataset.category || 'all').toLowerCase();
+            const target = (filter || 'all').toLowerCase();
+            const shouldShow = target === 'all' || category === target;
+            card.style.display = shouldShow ? '' : 'none';
+        });
+    }
+
+    // Click and keyboard handlers
+    buttons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter || 'all';
+            setActiveButton(btn);
+            applyFilter(filter);
+        });
+
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const next = buttons[(index + 1) % buttons.length];
+                next.focus();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const prev = buttons[(index - 1 + buttons.length) % buttons.length];
+                prev.focus();
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                btn.click();
+            }
+        });
+    });
+
+    // Initialize to the default active button (aria-pressed="true") or first
+    const defaultBtn = buttons.find(b => b.getAttribute('aria-pressed') === 'true') || buttons[0];
+    if (defaultBtn) {
+        setActiveButton(defaultBtn);
+        applyFilter(defaultBtn.dataset.filter || 'all');
+    }
+}
 
 // ==========================================================================
 // 6. INITIALIZATION
@@ -483,6 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	initActiveNav();
 	initIntrinsicCards();
 	initCardLightbox();
+	initProjectFilters();
 
 	console.log('🚀 Grade 1 Demo: Vanilla scroll animations initialized');
 });
@@ -525,7 +583,14 @@ window.addEventListener("resize", resize);
 let points = []; // historial del ratón
 const maxTrail = 30; // 🔥 alarga la cola aumentando este número
 
+// Inactivity / fade settings
+let lastMove = performance.now();
+const trailIdleTimeout = 100;     // ms of inactivity before starting fade
+const trailFadeDuration = 250;    // ms duration of fade to fully vanish
+
 window.addEventListener("mousemove", (e) => {
+    // Reset inactivity timer and push new point
+    lastMove = performance.now();
     points.push({ x: e.clientX, y: e.clientY });
 
     // Mantiene la cola con la longitud máxima
@@ -543,16 +608,33 @@ function draw() {
     // Si no hay suficientes puntos, no dibuja
     if (points.length < 2) return;
 
+    const now = performance.now();
+    const idle = now - lastMove;
+
+    // Compute fade progress: 0 = fully visible, 1 = fully faded and cleared
+    let fadeProgress = 0;
+    if (idle > trailIdleTimeout) {
+        fadeProgress = Math.min((idle - trailIdleTimeout) / trailFadeDuration, 1);
+    }
+
+    // If fully faded, clear points and exit (nothing to draw)
+    if (fadeProgress >= 1) {
+        points = [];
+        return;
+    }
+
     ctx.lineWidth = 8;
     ctx.lineCap = "round";
 
-    // Dibuja el trail
+    // Dibuja el trail con opacidad reducida por fadeProgress
     for (let i = 1; i < points.length; i++) {
         const p1 = points[i - 1];
         const p2 = points[i];
 
         // Opacidad gradual para que la cola se desvanezca suavemente
-        const alpha = i / points.length;
+        // baseAlpha = i / points.length, then reduce by fadeProgress
+        const baseAlpha = i / points.length;
+        const alpha = baseAlpha * (1 - fadeProgress);
 
         ctx.strokeStyle = `rgba(255, 0, 0, ${alpha})`;
 
@@ -563,6 +645,7 @@ function draw() {
     }
 }
 
+// Start animation loop
 draw();
 
 

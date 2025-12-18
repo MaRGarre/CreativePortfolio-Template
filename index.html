@@ -123,101 +123,367 @@
 		<section id="projects" class="section projects">
 			<div class="container">
 				<h2 class="section-title animate-on-scroll">Featured Projects</h2>
-				<div class="projects-grid" data-reveal-stagger>
-					<article class="project-card">
-					<div class="project-image">
-						<div class="card" role="button" tabindex="0" aria-label="Project: E-commerce Platform">
-							<div class="card-inner">
-								<div class="card-front">
-									<img src="https://ik.imagekit.io/MaRGarre/mar-garre-20190929-223206.jpg" alt="E-commerce Platform" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-								</div>
-								<div class="card-back">
-									<div style="padding:1rem;text-align:center;">
-										<h3 style="margin:0;color:white;">Traditional Art</h3>
-										<p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">An illustration of Itomori, from the movie Your Name. Graphite on 300g paper.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</article>
 
-				<article class="project-card">
-					<div class="project-image">
-						<div class="card" role="button" tabindex="0" aria-label="Project: Analytics Dashboard">
-							<div class="card-inner">
-								<div class="card-front">
-									<img src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767" alt="Analytics Dashboard" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-								</div>
-								<div class="card-back">
-									<div style="padding:1rem;text-align:center;">
-										<h3 style="margin:0;color:white;">Digital Art</h3>
-										<p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">An illustration of a reinterpretation of a manga panel from SHY, written by Bukimi Miki. Procreate.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</article>
+                <!-- Filter buttons for Featured Projects -->
+                <div class="projects-filters" role="toolbar" aria-label="Project filters">
+                    <button class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+                    <button class="filter-btn" data-filter="traditional-art">Traditional Art</button>
+                    <button class="filter-btn" data-filter="digital-art">Digital Art</button>
+                    <button class="filter-btn" data-filter="graphic-design">Graphic Design</button>
+                    <button class="filter-btn" data-filter="photography">Photography</button>
+                </div>
 
-				<article class="project-card">
-					<div class="project-image">
-						<div class="card" role="button" tabindex="0" aria-label="Project: App Landing Page">
-							<div class="card-inner">
-								<div class="card-front">
-									<img src="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg" alt="App Landing Page" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-								</div>
-								<div class="card-back">
-									<div style="padding:1rem;text-align:center;">
-										<h3 style="margin:0;color:white;">Graphic Design</h3>
-										<p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Page of a mock fashion-style car magazine, inspired by Mercedes-Benz. Photoshop.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</article>
+                <div class="projects-grid" data-reveal-stagger>
+                    <!-- Traditional (5 tarjetas) -->
+                    <article class="project-card" data-category="traditional-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Traditional A">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/mar-garre-20190929-223206.jpg" alt="Traditional A" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">"Itomori (Kimi No Na Wa)"</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Graphite on paper.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
 
-				<article class="project-card">
-					<div class="project-image">
-						<div class="card" role="button" tabindex="0" aria-label="Project: Brand Identity">
-							<div class="card-inner">
-								<div class="card-front">
-									<img src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg" alt="Brand Identity" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
-								</div>
-								<div class="card-back">
-									<div style="padding:1rem;text-align:center;">
-										<h3 style="margin:0;color:white;">Photography</h3>
-										<p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Photo session of a Honda project car. Canon EOS 2000D and Photoshop.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</article>
-			</div>
-			</div>
+                    <article class="project-card" data-category="traditional-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Traditional B">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-20221027-174153.jpg" alt="Traditional B" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">"Object I Like"</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Pencil portrait.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="traditional-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Traditional C">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/mar-garre-mar-y-marina-by-margarre-ddffjx4-fullview.jpg" alt="Traditional C" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">"MaR & Marina"</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Study on texture.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="traditional-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Traditional D">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/mar-garre-20201123-210654.jpg" alt="Traditional D" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">"Eastside (Sayra Splatoon)"</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Figure drawing.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="traditional-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Traditional E">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/mar-garre-d6ow63iw4aatl6d.jpg" alt="Traditional E" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">"Miguel & Marina Matching Icon (May)"</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Still life.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <!-- Digital (5 tarjetas) -->
+                    <article class="project-card" data-category="digital-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Digital A">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767" alt="Digital A" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Digital Art</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Procreate illustration.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="digital-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Digital B">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767" alt="Digital B" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Digital Art</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Fanart study.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="digital-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Digital C">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767" alt="Digital C" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Digital Art</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Color palette study.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="digital-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Digital D">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767" alt="Digital D" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Digital Art</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Character concept.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="digital-art">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Digital E">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767" alt="Digital E" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Digital Art</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Expression study.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <!-- Graphic (5 tarjetas) -->
+                    <article class="project-card" data-category="graphic-design">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Graphic A">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg" alt="Graphic A" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Graphic Design</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Editorial mock.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="graphic-design">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Graphic B">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg" alt="Graphic B" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Graphic Design</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Layout study.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="graphic-design">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Graphic C">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg" alt="Graphic C" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Graphic Design</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Cover mock.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="graphic-design">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Graphic D">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg" alt="Graphic D" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Graphic Design</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Typography study.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="graphic-design">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Graphic E">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg" alt="Graphic E" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Graphic Design</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Poster layout.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <!-- Photography (5 tarjetas) -->
+                    <article class="project-card" data-category="photography">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Photo A">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg" alt="Photo A" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Photography</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Car photoshoot.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="photography">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Photo B">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg" alt="Photo B" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Photography</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Editorial shot.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="photography">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Photo C">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg" alt="Photo C" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Photography</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Detail shot.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="photography">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Photo D">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg" alt="Photo D" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Photography</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Location study.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    <article class="project-card" data-category="photography">
+                      <div class="project-image">
+                        <div class="card" role="button" tabindex="0" aria-label="Project: Photo E">
+                          <div class="card-inner">
+                            <div class="card-front">
+                              <img src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg" alt="Photo E" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">
+                            </div>
+                            <div class="card-back">
+                              <div style="padding:1rem;text-align:center;"><h3 style="margin:0;color:white;">Photography</h3><p style="color:rgba(255,255,255,0.9);font-size:0.9rem;">Lighting test.</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                </div>
+            </div>
 		</section>
+
+                <!-- Stay Connected Section (re-added) -->
+                <section id="stay-connected" class="section stay-connected">
+                    <div class="container">
+                        <h2 class="section-title animate-on-scroll">Stay Connected</h2>
+                        <div class="stay-content animate-on-scroll">
+                            <p style="margin-bottom:var(--space-md); color:var(--color-text-muted);">Follow my work, see behind-the-scenes and get occasional updates about new projects.</p>
+
+                            <div class="social-links" style="justify-content:center; gap:var(--space-md); margin-bottom:var(--space-md);">
+                                <a href="#" aria-label="Instagram">Instagram</a>
+                                <a href="#" aria-label="Behance">Behance</a>
+                                <a href="#" aria-label="Twitter">Twitter</a>
+                                <a href="#" aria-label="TikTok">TikTok</a>
+                            </div>
+
+                            <div class="subscribe-row" style="display:flex;gap:var(--space-sm);justify-content:center;align-items:center;">
+                                <input type="email" name="email" placeholder="Your email" aria-label="Email" required style="padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--color-text);">
+                                <a href="mailto:hello@example.com" class="btn">Contact / Subscribe</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
 		<!-- Contact Section -->
 		<section id="contact" class="section contact">
 			<div class="container">
-				<h2 class="section-title animate-on-scroll">Get In Touch</h2>
-				<div class="contact-content animate-on-scroll">
-					<p>Interested in working together? Let's talk about your project.</p>
-					<a href="mailto:hello@example.com" class="btn btn-primary">Say Hello</a>
-					<div class="social-links">
-						<a href="#" aria-label="GitHub">GitHub</a>
-						<a href="#" aria-label="LinkedIn">LinkedIn</a>
-						<a href="#" aria-label="Twitter">Twitter</a>
-					</div>
+				<h2 class="section-title animate-on-scroll">Contact</h2>
+				<div class="contact-content">
+					<p class="animate-on-scroll" style="margin-bottom:var(--space-md);">I’m currently open to job opportunities, freelance projects, or collaborations. If you’re interested in working together, please don’t hesitate to get in touch!</p>
+					
+					<!-- Contact form (re-added) -->
+					<form action="https://formspree.io/f/mwkajnkl" method="POST" class="contact-form" style="display:flex;flex-direction:column;gap:var(--space-md);">
+						<input type="text" name="name" placeholder="Your Name" aria-label="Name" required style="padding:12px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--color-text);">
+						<input type="email" name="email" placeholder="Your Email" aria-label="Email" required style="padding:12px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--color-text);">
+						<textarea name="message" rows="4" placeholder="Your Message" aria-label="Message" required style="padding:12px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:var(--color-text);"></textarea>
+						<button type="submit" class="btn" style="align-self:start;">Send Message</button>
+					</form>
 				</div>
 			</div>
 		</section>
-	</main>
 
-	<!-- Footer -->
-	<footer class="footer">
+		<!-- Footer -->
+		<footer class="footer">
 		<div class="container">
 			<p>&copy; 2025 Marina Garre. Built with vanilla HTML, CSS & JS.</p>
 			<a href="#hero" class="back-to-top" aria-label="Back to top">↑</a>

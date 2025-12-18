@@ -184,8 +184,8 @@
 }
 
 .card-front {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background:  rgba(201, 13, 13, 0.9);
+  border: 5px solid  rgba(201, 13, 13, 0.9);
 }
 
 .card-back {
@@ -392,8 +392,9 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    pointer-events: none; /* para que no bloquee enlaces, scroll, botones, etc */
-    z-index: 9999;        /* asegura que está encima, pero sin interactuar */
+    pointer-events: none;
+    z-index: 9999;
+    
 }
 
 
@@ -755,4 +756,61 @@
 
 .lightbox-modal.hidden {
   display: none;
+}
+
+/* Filters for projects */
+.projects-filters {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin: var(--space-md) 0;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: rgba(201, 13, 13, 0.9); /* per-button red container requested */
+  color: #ffffff; /* ensure readable text */
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 180ms var(--ease-out),
+              box-shadow 180ms var(--ease-out),
+              filter 180ms linear;
+  will-change: transform, box-shadow;
+}
+
+.filter-btn:hover,
+.filter-btn:focus {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  filter: brightness(1.06);
+}
+
+.filter-btn:active {
+  transform: translateY(0) scale(0.995);
+}
+
+.filter-btn:focus-visible {
+  outline: 3px solid rgba(255,255,255,0.12);
+  outline-offset: 4px;
+}
+
+/* Keep the active state styling */
+.filter-btn[aria-pressed="true"] {
+  background: rgba(201, 13, 13, 0.95); /* slightly stronger when active */
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* Hidden cards (used by JS) */
+.project-card[style*="display: none"] {
+  opacity: 0;
+  transform: scale(.98);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  height: 0; /* collapse to avoid gaps when hidden */
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
