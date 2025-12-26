@@ -130,7 +130,7 @@
 	margin-bottom: var(--space-sm);
 	letter-spacing: -0.02em;
 	font-family: 'Audiowide', sans-serif;
-	animation: glow 3s ease-in-out infinite alternate;
+	animation: glow 2s infinite alternate;
 }
 
 .hero-subtitle {
@@ -178,10 +178,10 @@
 
 @keyframes glow {
 	0% {
-		text-shadow: 0 0 5px rgba(231, 19, 19, 0.5);
+		filter: drop-shadow(0 0 5px rgba(231, 19, 19, 0.5));
 	}
 	100% {
-		text-shadow: 0 0 20px rgba(231, 19, 19, 0.8), 0 0 30px rgba(231, 19, 19, 0.6), 0 0 40px rgba(231, 19, 19, 0.4);
+		filter: drop-shadow(0 0 20px rgba(231, 19, 19, 0.8)) drop-shadow(0 0 30px rgba(231, 19, 19, 0.6)) drop-shadow(0 0 40px rgba(231, 19, 19, 0.4));
 	}
 }
 
