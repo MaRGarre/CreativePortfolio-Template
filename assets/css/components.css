@@ -66,7 +66,7 @@
 }
 
 .skill-bar {
-	height: 6px;
+	height: 12px;
 	background: var(--color-bg-alt);
 	border-radius: 3px;
 	overflow: hidden;
@@ -78,6 +78,19 @@
 	background: var(--color-skill-fill); /* use dedicated skill color, not --color-accent */
 	border-radius: 3px;
 	transition: width 1s var(--ease-out) 0.3s;
+	position: relative;
+	overflow: hidden;
+}
+
+.skill-fill::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+	animation: liquid 2s ease-in-out infinite;
 }
 
 /* --------------------------------------------------------------------------
@@ -99,9 +112,10 @@
   position: absolute;
   left: 0;
   width: 100%;
-  height: 2px;
-  /* single color line */
-  background: #000000;
+  height: 3px;
+  /* laser line */
+  background: #e71313;
+  box-shadow: 0 0 5px #e71313, 0 0 10px #e71313;
   bottom: -4px;
   transform: scaleX(0);
   transform-origin: right;
@@ -186,12 +200,16 @@
 .card-front {
   background:  rgba(201, 13, 13, 0.9);
   border: 5px solid  rgba(201, 13, 13, 0.9);
+  box-shadow: 0 0 10px rgba(231, 19, 19, 0.5), 0 0 20px rgba(231, 19, 19, 0.3);
+  animation: box-glow 3s ease-in-out infinite alternate;
 }
 
 .card-back {
   background: var(--color-nav);
   color: white;
   transform: rotateY(180deg);
+  box-shadow: 0 0 10px rgba(231, 19, 19, 0.5), 0 0 20px rgba(231, 19, 19, 0.3);
+  animation: box-glow 3s ease-in-out infinite alternate;
 }
 
 
@@ -225,12 +243,12 @@
 }
 
 .holographic-card {
-  width: min(350px, 90%);     
-  max-width: 50%;
+  width: min(250px, 70%);     
+  max-width: 40%;
   margin: 0 auto;            
   height: auto;              
-  padding: var(--space-md);  
-  aspect-ratio: 5/2;         
+  padding: var(--space-xs);  
+  aspect-ratio: 4/1;         
   background: #111;
   display: flex;
   justify-content: center;
@@ -239,11 +257,13 @@
   overflow: hidden;
   border-radius: 15px;
   transition: all 0.5s ease;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 1.5rem;
 }
 
 .holographic-card h2 {
   color: rgb(255, 0, 0);
-  font-size: 2rem;
+  font-size: 1.5rem;
   position: relative;
   z-index: 2;
 }
@@ -287,8 +307,8 @@
    ---------------------------------------------------------------------------*/
 
 .skill-card .skill-icon img {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   max-width: 100%;
   object-fit: contain;
   display: inline-block;
@@ -813,4 +833,22 @@
   padding: 0;
   margin: 0;
   overflow: hidden;
+}
+
+@keyframes liquid {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes box-glow {
+  0% {
+    box-shadow: 0 0 10px rgba(231, 19, 19, 0.5), 0 0 20px rgba(231, 19, 19, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(231, 19, 19, 0.8), 0 0 30px rgba(231, 19, 19, 0.6), 0 0 40px rgba(231, 19, 19, 0.4);
+  }
 }
