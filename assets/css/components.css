@@ -46,6 +46,14 @@
 	animation: fadeInText 3s ease-out forwards;
 }
 
+.animate-text {
+	clip-path: inset(0 0 100% 0);
+}
+
+.stay-content.visible .animate-text {
+	animation: fadeInText 3s ease-out forwards;
+}
+
 @keyframes fadeInText {
 	from {
 		clip-path: inset(0 0 100% 0);
