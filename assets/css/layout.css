@@ -15,6 +15,7 @@
 	font-weight: 700;
 	margin-bottom: var(--space-xl);
 	text-align: center;
+	animation: glow-pulse 2s ease-in-out infinite;
 }
 
 /* --------------------------------------------------------------------------
@@ -130,7 +131,7 @@
 	margin-bottom: var(--space-sm);
 	letter-spacing: -0.02em;
 	font-family: 'Audiowide', sans-serif;
-	animation: glow 2s infinite alternate;
+	animation: glow-pulse 2s ease-in-out infinite;
 }
 
 .hero-subtitle {
@@ -182,6 +183,33 @@
 	}
 	100% {
 		filter: drop-shadow(0 0 20px rgba(231, 19, 19, 0.8)) drop-shadow(0 0 30px rgba(231, 19, 19, 0.6)) drop-shadow(0 0 40px rgba(231, 19, 19, 0.4));
+	}
+}
+
+@keyframes glow-background {
+	0% {
+		filter: blur(20px) brightness(0.5);
+		background-color: rgba(231, 19, 19, 0.1);
+	}
+	100% {
+		filter: blur(30px) brightness(1);
+		background-color: rgba(255, 0, 0, 0.3);
+	}
+}
+
+@keyframes glow-pulse {
+	0%, 100% {
+		text-shadow: 
+			0 0 5px rgba(82, 59, 59, 0.3),
+			0 0 10px rgba(65, 28, 28, 0.2),
+			0 0 15px rgba(43, 0, 0, 0.1);
+	}
+	40% {
+		text-shadow: 
+			0 0 15px rgb(255, 0, 0),
+			0 0 25px rgba(175, 0, 0, 0.8),
+			0 0 35px rgba(97, 0, 0, 0.6),
+			0 0 45px rgba(57, 0, 0, 0.4);
 	}
 }
 

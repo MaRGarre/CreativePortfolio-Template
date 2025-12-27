@@ -16,13 +16,24 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: min(90%, 1200px);
+	width: 100%;
+	padding: 0 var(--space-lg);
 	margin-inline: auto;
+	position: relative;
 }
 
 .nav-logo {
 	font-size: var(--text-xl);
 	font-weight: 700;
+	margin-right: auto;
+}
+
+.nav-heart {
+	font-size: var(--text-xl);
+	color: white;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .nav-links {
@@ -33,10 +44,14 @@
 
 .nav-links a {
 	color: var(--color-text-muted);
-	transition: color 0.3s;
+	transition: all 0.3s;
 }
 
 .nav-links a:hover,
 .nav-links a:focus {
-	color: var(--color-accent);
+	color: white;
+	text-shadow: 
+		0 0 10px rgba(255, 255, 255, 0.8),
+		0 0 20px rgba(255, 255, 255, 0.6),
+		0 0 30px rgba(255, 255, 255, 0.4);
 }
