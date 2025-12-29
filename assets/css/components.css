@@ -1,5 +1,9 @@
+/* ==========================================================================
+   COMPONENTS.CSS - Portfolio Components & UI Elements
+   ========================================================================== */
+
 /* --------------------------------------------------------------------------
-   6. Button
+   1. BUTTONS
    -------------------------------------------------------------------------- */
 .btn {
   display: inline-block;
@@ -62,7 +66,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   7. About Section
+   2. ABOUT SECTION
    -------------------------------------------------------------------------- */
 .about {
   background: var(--color-bg-alt);
@@ -80,6 +84,7 @@
   }
 }
 
+/* About text animations */
 .about-text p {
   margin-bottom: var(--space-md);
   color: var(--color-text-muted);
@@ -99,15 +104,7 @@
   animation: fadeInText 3s ease-out forwards;
 }
 
-@keyframes fadeInText {
-  from {
-    clip-path: inset(0 0 100% 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
+/* Studies section */
 .title.studies {
   position: relative;
   display: block;
@@ -127,6 +124,42 @@
   opacity: 1;
 }
 
+.studies {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.study-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.study-logo {
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+@media (max-width: 640px) {
+  .study-logo {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.study-info .study-name {
+  font-weight: 600;
+}
+
+.study-info .study-status {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+/* Skills grid */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -146,6 +179,15 @@
   margin-bottom: var(--space-sm);
 }
 
+.skill-card .skill-icon img {
+  width: 48px;
+  height: 48px;
+  max-width: 100%;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .skill-card h3 {
   font-size: var(--text-sm);
   margin-bottom: var(--space-sm);
@@ -162,9 +204,7 @@
 .skill-fill {
   height: 100%;
   width: 0;
-  background: var(
-    --color-skill-fill
-  ); /* use dedicated skill color, not --color-accent */
+  background: var(--color-skill-fill);
   border-radius: 3px;
   transition: width 1s var(--ease-out) 0.3s;
   position: relative;
@@ -187,11 +227,15 @@
   animation: liquid 2s ease-in-out infinite;
 }
 
-/* --------------------------------------------------------------------------
-   UNDERLINE HOVER
-   ---------------------------------------------------------------------------*/
+/* Animate skill bars when revealed */
+[data-reveal-stagger].revealed .skill-fill {
+  width: var(--fill);
+}
 
-/* Nav link underline hover (applies to Home / About / Projects / Contact) */
+/* --------------------------------------------------------------------------
+   3. PROJECTS SECTION
+   -------------------------------------------------------------------------- */
+/* Nav link underline hover */
 .nav-links a {
   position: relative;
   color: inherit;
@@ -221,7 +265,7 @@
   top: -4px;
   bottom: auto;
   transform-origin: left;
-  opacity: 0; /* keep top line hidden by default */
+  opacity: 0;
 }
 
 .nav-links a:hover::after,
@@ -232,38 +276,22 @@
   opacity: 1;
 }
 
-/* Keep a small utility for any elements using .hover-underline */
-.hover-underline {
-  position: relative;
-  display: inline-block;
+/* Active nav link state */
+.nav-links a.active {
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
 }
-.hover-underline::after,
-.hover-underline::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  /* single color line */
-  background: #f461a3;
-  left: 0;
-  bottom: -4px;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.35s ease-out;
-}
-.hover-underline::before {
-  top: -4px;
-  transform-origin: left;
-}
-.hover-underline:hover::after,
-.hover-underline:hover::before {
+
+.nav-links a.active::after,
+.nav-links a.active::before {
   transform: scaleX(1);
+  opacity: 1;
 }
 
 /* --------------------------------------------------------------------------
-   FLIP CARDS
-   ---------------------------------------------------------------------------*/
-
+   4. FLIP CARDS
+   -------------------------------------------------------------------------- */
 .card {
   width: 200px;
   height: 250px;
@@ -312,24 +340,8 @@
 }
 
 /* --------------------------------------------------------------------------
-   Ensure active nav link shows the same underline/overline as hover and uses the active color
+   5. HOLOGRAPHIC BUTTON EFFECT
    -------------------------------------------------------------------------- */
-.nav-links a.active {
-  color: white;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
-    0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
-}
-
-.nav-links a.active::after,
-.nav-links a.active::before {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
-/* --------------------------------------------------------------------------
-   HOLOGRAPHIC BUTTON EFFECT
-   ---------------------------------------------------------------------------*/
-
 .holographic-container {
   display: flex;
   justify-content: center;
@@ -407,26 +419,8 @@
   transform: rotate(-45deg) translateY(100%);
 }
 
-/* Animate skill bars when revealed */
-[data-reveal-stagger].revealed .skill-fill {
-  width: var(--fill);
-}
-
 /* --------------------------------------------------------------------------
-   ICONS
-   ---------------------------------------------------------------------------*/
-
-.skill-card .skill-icon img {
-  width: 48px;
-  height: 48px;
-  max-width: 100%;
-  object-fit: contain;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-/* --------------------------------------------------------------------------
-   8. Projects Section
+   6. ABOUT SECTION
    -------------------------------------------------------------------------- */
 .projects-grid {
   display: grid;
@@ -445,7 +439,6 @@
   }
 }
 
-/* Add an extra column on very wide screens so the fourth card sits at the far right */
 @media (min-width: 1280px) {
   .projects-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -453,81 +446,108 @@
 }
 
 .project-card {
-  background: transparent; /* remove boxed background */
-  border-radius: 0; /* no rounded container */
-  overflow: visible; /* let the card edges show */
-  transition: none; /* remove container hover */
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+  transition: none;
   box-shadow: none;
   padding: 0;
 }
 
-.project-card:hover {
-  transform: none;
-  box-shadow: none;
-}
-
 .project-image {
-  /* Allow flip card to define size and not be clipped by container */
   aspect-ratio: auto;
   overflow: visible;
 }
 
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s;
-}
-
-.project-card:hover .project-image img {
-  transform: none; /* keep flip card hover handling, avoid extra image scale */
-}
-
-.project-content {
-  padding: var(--space-md);
-}
-
-.project-content h3 {
-  font-size: var(--text-lg);
-  margin-bottom: var(--space-sm);
-}
-
-.project-content p {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-md);
-}
-
-.project-tags {
+/* Project filters */
+.projects-filters {
   display: flex;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
+  justify-content: center;
+  margin: var(--space-md) 0;
   flex-wrap: wrap;
 }
 
-.project-tags span {
-  font-size: var(--text-xs);
-  padding: 4px 8px;
-  background: var(--color-bg);
-  border-radius: 4px;
-  color: var(--color-accent);
+.filter-btn {
+  background: rgba(201, 13, 13, 0.9);
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  text-shadow: 0 0 5px #e71313, 0 0 10px #e71313;
+  box-shadow: 0 0 10px rgba(231, 19, 19, 0.5), 0 0 20px rgba(231, 19, 19, 0.3);
+  transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out),
+    filter 180ms linear, text-shadow 180ms linear;
+  will-change: transform, box-shadow;
 }
 
-/* --------------------------------------------------------------------------
-   MOUSE TRAIL EFFECT
-   -------------------------------------------------------------------------- */
+.filter-btn:hover,
+.filter-btn:focus {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25), 0 0 15px rgba(231, 19, 19, 0.7),
+    0 0 30px rgba(231, 19, 19, 0.5);
+  text-shadow: 0 0 8px #e71313, 0 0 15px #e71313;
+  filter: brightness(1.06);
+}
 
-#trailCanvas {
+.filter-btn:active {
+  transform: translateY(0) scale(0.995);
+}
+
+.filter-btn:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.12);
+  outline-offset: 4px;
+}
+
+.filter-btn[aria-pressed="true"] {
+  background: rgba(201, 13, 13, 0.95);
+  color: #ffffff;
+  border-color: transparent;
+  text-shadow: 0 0 8px #e71313, 0 0 15px #e71313;
+  box-shadow: 0 0 15px rgba(231, 19, 19, 0.6), 0 0 30px rgba(231, 19, 19, 0.4);
+}
+
+/* Hidden project cards */
+.project-card[style*="display: none"] {
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Lightbox modal */
+.lightbox-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2000;
+  padding: var(--space-lg);
+  box-sizing: border-box;
+  cursor: zoom-out;
+}
+
+.lightbox-modal img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  display: block;
+}
+
+.lightbox-modal.hidden {
+  display: none;
 }
 
 /* --------------------------------------------------------------------------
-   9. Contact Section
+   7. CONTACT SECTION
    -------------------------------------------------------------------------- */
 .contact {
   background: var(--color-bg-alt);
@@ -540,6 +560,19 @@
   margin-bottom: var(--space-lg);
 }
 
+/* Contact form */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #e71313 !important;
+  box-shadow: 0 0 0 2px rgba(231, 19, 19, 0.3), 0 0 10px rgba(231, 19, 19, 0.2);
+}
+
+.contact-form textarea {
+  resize: none;
+}
+
+/* Social links */
 .social-links {
   display: flex;
   justify-content: center;
@@ -557,7 +590,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   10. Footer
+   8. FOOTER
    -------------------------------------------------------------------------- */
 .footer {
   padding: var(--space-lg) 0;
@@ -619,9 +652,23 @@
 }
 
 /* --------------------------------------------------------------------------
-   11. SCROLL REVEAL ANIMATIONS (IntersectionObserver-driven)
+   9. MOUSE TRAIL EFFECT
+   -------------------------------------------------------------------------- */
+#trailCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
 
-   🎓 THE CSS + JAVASCRIPT PARTNERSHIP:
+/* --------------------------------------------------------------------------
+   10. SCROLL REVEAL ANIMATIONS
+   --------------------------------------------------------------------------
+   
+   THE CSS + JAVASCRIPT PARTNERSHIP:
    The JavaScript IntersectionObserver (in main.js) adds classes when elements
    enter the viewport. CSS handles the actual animation via transitions.
 
@@ -629,64 +676,49 @@
    - JS: "When should the animation start?" (viewport detection)
    - CSS: "How should the animation look?" (visual effects)
 
-   📐 THE PATTERN:
+   THE PATTERN:
    1. Elements start with opacity: 0 and transform: translateY(30px)
    2. JavaScript adds .visible class when element enters viewport
    3. CSS transitions smoothly animate to opacity: 1 and translateY(0)
 
-   ⚡ PERFORMANCE NOTE:
-   We ONLY animate `transform` and `opacity` because these properties:
-   - Don't trigger layout recalculation (expensive!)
-   - Don't trigger repaint (also expensive!)
-   - Run on the GPU compositor thread (fast! 60fps!)
+   PERFORMANCE NOTE:
+   We ONLY animate `transform` and `opacity`.
 
    NEVER animate: width, height, margin, padding, top, left, etc.
    These trigger layout and will cause jank (stuttering).
    -------------------------------------------------------------------------- */
 
 /*
- * SINGLE ELEMENT REVEAL
- *
- * Use class="animate-on-scroll" on any element you want to fade in.
- * JavaScript will add .visible when it scrolls into view.
+ * SINGLE ELEMENT REVEAL ANIMATION
  */
-.animate-on-scroll {
-  opacity: 0; /* Start invisible */
-  transform: translateY(30px); /* Start 30px below final position */
 
-  /*
-	 * TRANSITION SHORTHAND EXPANDED:
-	 *
-	 * transition: [property] [duration] [timing-function]
-	 *
-	 * We're transitioning TWO properties (opacity AND transform).
-	 * Both use var(--duration-normal) = 0.6s
-	 * Both use var(--ease-out) = our custom easing curve
-	 */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
   transition: opacity var(--duration-normal) var(--ease-out),
     transform var(--duration-normal) var(--ease-out);
 }
 
 .animate-on-scroll.visible {
-  opacity: 1; /* Fade in */
-  transform: translateY(0); /* Move to final position */
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* --------------------------------------------------------------------------
    STAGGERED REVEAL ANIMATION
 
-   🎓 WHAT IS STAGGERING?
+   WHAT IS STAGGERING?
    Staggering means animating children elements one after another instead of
    all at once. This creates a "cascade" or "wave" effect that draws the eye
    and feels more dynamic than everything appearing simultaneously.
 
-   📐 HOW IT WORKS:
+   HOW IT WORKS:
    1. Parent has [data-reveal-stagger] attribute
    2. All children start invisible (opacity: 0, translateY)
    3. When parent gets .revealed class, children animate with increasing delays
    4. transition-delay creates the stagger: 0.1s, 0.2s, 0.3s, 0.4s, etc.
 
-   💡 DATA ATTRIBUTES:
+   DATA ATTRIBUTES:
    We use data-* attributes instead of classes because:
    - They're semantic: "this element reveals with stagger"
    - They can hold values: data-stagger-delay="0.2s" (future enhancement)
@@ -706,7 +738,7 @@
  *
  * This creates the "wave" effect as elements appear one by one.
  *
- * ⚠️ LIMITATION: This only works for up to 6 children. For dynamic
+ * LIMITATION: This only works for up to 6 children. For dynamic
  * content with unknown child count, you'd need JavaScript to set delays.
  */
 [data-reveal-stagger].revealed > *:nth-child(1) {
@@ -734,9 +766,10 @@
 }
 
 /* --------------------------------------------------------------------------
-   12. ACCESSIBILITY: REDUCED MOTION
-
-   🎓 WHY THIS MATTERS:
+   11. ACCESSIBILITY: REDUCED MOTION
+   --------------------------------------------------------------------------
+   
+   WHY THIS MATTERS:
    Some users experience motion sickness, vestibular disorders, or seizures
    triggered by animations. Others simply find motion distracting.
 
@@ -746,21 +779,19 @@
    - Windows: Settings → Ease of Access → Display → Show animations
    - iOS: Settings → Accessibility → Motion → Reduce Motion
 
-   ⚖️ LEGAL REQUIREMENT:
+   LEGAL REQUIREMENT:
    WCAG 2.1 Success Criterion 2.3.3 requires respecting user motion preferences.
    Ignoring this can expose you to accessibility lawsuits.
 
-   📐 OUR APPROACH:
+   OUR APPROACH:
    When reduced motion is preferred, we:
    1. Disable ALL animations and transitions (near-instant 0.01ms)
    2. Make animated elements immediately visible (no waiting)
    3. Disable smooth scrolling (instant jumps instead)
 
-   💡 WHY 0.01ms INSTEAD OF 0ms?
+   WHY 0.01ms INSTEAD OF 0ms?
    Some browsers have bugs with 0ms duration. 0.01ms is effectively instant
    but avoids those edge cases.
-
-   🔗 LEARN MORE: https://web.dev/prefers-reduced-motion/
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   /*
@@ -800,7 +831,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   13. Mobile Adjustments
+   12. MEDIA QUERIES & RESPONSIVE DESIGN
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
   .nav-links {
@@ -814,191 +845,41 @@
 }
 
 /* --------------------------------------------------------------------------
-   STUDIES LIST (logos next to study names)
-   --------------------------------------------------------------------------*/
-.studies {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-.study-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
-.study-logo {
-  width: 170px;
-  height: 170px;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-@media (max-width: 640px) {
-  .study-logo {
-    width: 96px;
-    height: 96px;
+   13. KEYFRAME ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
   }
 }
-.study-info .study-name {
-  font-weight: 600;
-}
-.study-info .study-status {
-  color: var(--color-text-muted);
-  font-size: 0.95rem;
+
+@keyframes fadeInText {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
 }
 
-/* Intrinsic sizing: let specific cards size to their image */
-.project-image--intrinsic {
-  display: inline-block;
-  width: auto;
-  max-width: 100%;
-}
-
-/* Make intrinsic card act like a normal flip card but scale to image width */
-.card--intrinsic {
-  display: inline-block;
-  width: auto;
-  height: auto;
-  max-width: 420px; /* cap width so it doesn't get huge */
-  perspective: 1200px;
-}
-
-.card--intrinsic .card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.card--intrinsic:hover .card-inner,
-.card--intrinsic:focus .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card--intrinsic .card-front,
-.card--intrinsic .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: inherit;
-  overflow: hidden;
-}
-
-.card--intrinsic .card-front img {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  display: block;
-}
-
-.card--intrinsic .card-back {
-  background: var(--color-nav);
-  transform: rotateY(180deg);
-}
-
-/* Simple lightbox for viewing card images */
-.lightbox-modal {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 2000;
-  padding: var(--space-lg);
-  box-sizing: border-box;
-  cursor: zoom-out;
-}
-
-.lightbox-modal img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 8px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  display: block;
-}
-
-.lightbox-modal.hidden {
-  display: none;
-}
-
-/* Filters for projects */
-.projects-filters {
-  display: flex;
-  gap: var(--space-sm);
-  justify-content: center;
-  margin: var(--space-md) 0;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background: rgba(201, 13, 13, 0.9); /* per-button red container requested */
-  color: #ffffff; /* ensure readable text */
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  text-shadow: 0 0 5px #e71313, 0 0 10px #e71313;
-  box-shadow: 0 0 10px rgba(231, 19, 19, 0.5), 0 0 20px rgba(231, 19, 19, 0.3);
-  transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out),
-    filter 180ms linear, text-shadow 180ms linear;
-  will-change: transform, box-shadow;
-}
-
-.filter-btn:hover,
-.filter-btn:focus {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25), 0 0 15px rgba(231, 19, 19, 0.7),
-    0 0 30px rgba(231, 19, 19, 0.5);
-  text-shadow: 0 0 8px #e71313, 0 0 15px #e71313;
-  filter: brightness(1.06);
-}
-
-.filter-btn:active {
-  transform: translateY(0) scale(0.995);
-}
-
-.filter-btn:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.12);
-  outline-offset: 4px;
-}
-
-/* Keep the active state styling */
-.filter-btn[aria-pressed="true"] {
-  background: rgba(201, 13, 13, 0.95); /* slightly stronger when active */
-  color: #ffffff;
-  border-color: transparent;
-  text-shadow: 0 0 8px #e71313, 0 0 15px #e71313;
-  box-shadow: 0 0 15px rgba(231, 19, 19, 0.6), 0 0 30px rgba(231, 19, 19, 0.4);
-}
-
-/* Hidden cards (used by JS) */
-.project-card[style*="display: none"] {
-  opacity: 0;
-  transform: scale(0.98);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  height: 0; /* collapse to avoid gaps when hidden */
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-/* Contact form styling */
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: #e71313 !important;
-  box-shadow: 0 0 0 2px rgba(231, 19, 19, 0.3), 0 0 10px rgba(231, 19, 19, 0.2);
-}
-
-.contact-form textarea {
-  resize: none;
+@keyframes bounce-up {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 @keyframes liquid {
