@@ -32,6 +32,6 @@ body {
   font-weight: 700;
   text-align: center;
   margin-bottom: var(--space-xl);
-  font-family: 'Audiowide', sans-serif;
+  font-family: "Audiowide", sans-serif;
   animation: glow-pulse 2s ease-in-out infinite;
 }

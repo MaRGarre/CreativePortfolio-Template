@@ -1,57 +1,81 @@
 /* --------------------------------------------------------------------------
-   4. Navigation
+   NAVIGATION
    -------------------------------------------------------------------------- */
+
+/* Variables específicas de navegación */
+:root {
+  --nav-height: 80px;
+}
+
+/* Nav wrapper */
 .nav {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 100;
-	background: rgba(201, 13, 13, 0.9);
-	backdrop-filter: blur(10px);
-	padding: var(--space-md) 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  height: var(--nav-height);
+  padding: var(--space-md) 0;
+
+  background: rgba(201, 13, 13, 0.9);
+  backdrop-filter: blur(10px);
 }
 
+/* Inner container */
 .nav-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	padding: 0 var(--space-lg);
-	margin-inline: auto;
-	position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding: 0 var(--space-lg);
+  margin-inline: auto;
+
+  position: relative;
 }
 
+/* Logo */
 .nav-logo {
-	font-size: var(--text-xl);
-	font-weight: 700;
-	margin-right: auto;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-right: auto;
 }
 
+/* Center heart icon */
 .nav-heart {
-	font-size: var(--text-xl);
-	color: white;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: var(--text-xl);
+  color: white;
 }
 
+/* Navigation links */
 .nav-links {
-	display: flex;
-	gap: var(--space-lg);
-	list-style: none;
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
 }
 
 .nav-links a {
-	color: var(--color-text-muted);
-	transition: all 0.3s;
+  color: var(--color-text-muted);
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
 .nav-links a:hover,
 .nav-links a:focus {
-	color: white;
-	text-shadow: 
-		0 0 10px rgba(255, 255, 255, 0.8),
-		0 0 20px rgba(255, 255, 255, 0.6),
-		0 0 30px rgba(255, 255, 255, 0.4);
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   FIX NAV HEIGHT + CONTENT OFFSET
+   -------------------------------------------------------------------------- */
+
+/* Push content below fixed nav */
+main {
+  padding-top: var(--nav-height);
 }

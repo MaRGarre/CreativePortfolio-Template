@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found | Portfolio Artístico Marina Garre</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://ik.imagekit.io/MaRGarre/Love_Heart_SVG.svg.png"
+    />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .error-page {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        background: var(--color-bg);
+      }
+
+      .error-bg {
+        position: absolute;
+        inset: 0;
+        background-image: url(https://ik.imagekit.io/MaRGarre/marowo-20250530-181443.jpg);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
+        z-index: -1;
+        filter: blur(3px);
+      }
+
+      .error-content {
+        position: relative;
+        z-index: 1;
+        padding: var(--space-xl);
+        max-width: 800px;
+      }
+
+      .error-code {
+        font-size: clamp(5rem, 15vw, 12rem);
+        font-weight: 700;
+        font-family: "Audiowide", sans-serif;
+        color: var(--color-text);
+        line-height: 1;
+        margin-bottom: var(--space-md);
+        animation: glow-pulse 2s ease-in-out infinite;
+        text-shadow: 0 0 20px rgba(231, 19, 19, 0.5),
+                     0 0 40px rgba(231, 19, 19, 0.3),
+                     0 0 60px rgba(231, 19, 19, 0.2);
+      }
+
+      @keyframes glow-pulse {
+        0%, 100% {
+          text-shadow: 0 0 20px rgba(231, 19, 19, 0.5),
+                       0 0 40px rgba(231, 19, 19, 0.3),
+                       0 0 60px rgba(231, 19, 19, 0.2);
+        }
+        50% {
+          text-shadow: 0 0 30px rgba(231, 19, 19, 0.8),
+                       0 0 60px rgba(231, 19, 19, 0.5),
+                       0 0 90px rgba(231, 19, 19, 0.3);
+        }
+      }
+
+      .error-title {
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        margin-bottom: var(--space-md);
+        font-family: "Audiowide", sans-serif;
+        color: var(--color-text);
+      }
+
+      .error-message {
+        font-size: var(--text-lg);
+        color: var(--color-text-muted);
+        margin-bottom: var(--space-xl);
+        line-height: var(--leading-base);
+      }
+
+      .error-heart {
+        font-size: var(--text-4xl);
+        color: #e71313;
+        display: inline-block;
+        margin: 0 0 var(--space-md) 0;
+        margin-top: -5%;
+        animation: heartbeat 1.5s ease-in-out infinite;
+      }
+
+      @keyframes heartbeat {
+        0%, 100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+      }
+
+      .error-buttons {
+        display: flex;
+        gap: var(--space-md);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .error-btn {
+        display: inline-block;
+        padding: var(--space-sm) var(--space-lg);
+        background: #111;
+        color: white;
+        font-weight: 600;
+        border-radius: 15px;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        animation: glow-btn 2s infinite;
+      }
+
+      @keyframes glow-btn {
+        0%, 100% {
+          box-shadow: none;
+        }
+        50% {
+          box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+      }
+
+      .error-btn::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          0deg,
+          transparent,
+          transparent 30%,
+          rgba(255, 0, 0, 0.3)
+        );
+        transform: rotate(-45deg);
+        transition: all 0.5s ease;
+        opacity: 0;
+        z-index: 0;
+      }
+
+      .error-btn:hover,
+      .error-btn:focus {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+      }
+
+      .error-btn:hover::before {
+        opacity: 1;
+        transform: rotate(-45deg) translateY(100%);
+      }
+
+      .error-btn span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .floating-shapes {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .shape {
+        position: absolute;
+        border: 2px solid rgba(231, 19, 19, 0.3);
+        animation: float 20s ease-in-out infinite;
+      }
+
+      .shape:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+        border-radius: 50%;
+      }
+
+      .shape:nth-child(2) {
+        width: 60px;
+        height: 60px;
+        top: 60%;
+        right: 15%;
+        animation-delay: -5s;
+        border-radius: 0;
+        transform: rotate(45deg);
+      }
+
+      .shape:nth-child(3) {
+        width: 100px;
+        height: 100px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: -10s;
+        border-radius: 50%;
+      }
+
+      .shape:nth-child(4) {
+        width: 70px;
+        height: 70px;
+        top: 30%;
+        right: 25%;
+        animation-delay: -7s;
+        border-radius: 0;
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0.3;
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg);
+          opacity: 0.6;
+        }
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .error-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .error-btn {
+          min-width: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main" class="error-page">
+      <div class="error-bg"></div>
+      
+      <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+
+      <div class="error-content">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Oops! Page Not Found</h1>
+        <p class="error-message">
+          The page you're looking for seems to have disappeared into the creative void.
+          Let's get you back to exploring amazing artwork!
+        </p>
+        <div class="error-heart">♥</div>
+        <div class="error-buttons">
+          <a href="index.html" class="error-btn">
+            <span>Back to Home</span>
+          </a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
