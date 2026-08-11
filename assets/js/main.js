@@ -174,7 +174,40 @@ function initActiveNav() {
 }
 
 // ==========================================================================
-// 5. CARD LIGHTBOX MODAL
+// 5. MOBILE NAVIGATION (hamburger menu)
+// ==========================================================================
+
+/**
+ * Toggle the mobile nav-links panel via the hamburger button.
+ * Closes automatically when a link is clicked or Escape is pressed.
+ */
+function initMobileNav() {
+  const toggle = document.getElementById("navToggle");
+  const links = document.getElementById("navLinks");
+  if (!toggle || !links) return;
+
+  function closeMenu() {
+    toggle.setAttribute("aria-expanded", "false");
+    links.classList.remove("open");
+  }
+
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+    links.classList.toggle("open", !isOpen);
+  });
+
+  links.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+}
+
+// ==========================================================================
+// 6. CARD LIGHTBOX MODAL
 // ==========================================================================
 
 /**
@@ -185,20 +218,61 @@ function initCardLightbox() {
   let modal = document.createElement("div");
   modal.className = "lightbox-modal hidden";
   modal.setAttribute("tabindex", "-1");
-  modal.innerHTML = '<img alt="" />';
+  modal.innerHTML =
+    '<img alt="" /><div class="lightbox-caption"><h3></h3><p></p></div>';
   document.body.appendChild(modal);
 
-  function openLightbox(imgSrc, imgAlt) {
-    const img = modal.querySelector("img");
-    img.src = imgSrc;
-    img.alt = imgAlt || "";
+  const modalImg = modal.querySelector("img");
+  const caption = modal.querySelector(".lightbox-caption");
+  const captionTitle = caption.querySelector("h3");
+  const captionDesc = caption.querySelector("p");
+
+  // Touch devices have no real hover state, so the flip can't be driven by
+  // CSS :hover — it would flip and immediately un-flip before the back
+  // face could be read. On those devices a tap flips the card AND opens
+  // the lightbox together, with the card-back text sliding in as a
+  // caption under the enlarged photo. Closing reverses both at once.
+  // Mouse/trackpad devices (desktop) are untouched: hover still previews
+  // the flip and click still opens a plain, caption-less lightbox exactly
+  // like before.
+  const noHover = window.matchMedia("(hover: none)").matches;
+  if (!noHover) {
+    caption.style.display = "none";
+    // No caption to leave room for on desktop — keep the image exactly
+    // as large as it always was.
+    modalImg.style.maxHeight = "100%";
+  }
+  let activeCard = null;
+
+  function openLightbox(imgSrc, imgAlt, card) {
+    modalImg.src = imgSrc;
+    modalImg.alt = imgAlt || "";
+
+    if (noHover) {
+      const titleEl = card && card.querySelector(".card-back h3");
+      const descEl = card && card.querySelector(".card-back p");
+      captionTitle.textContent = titleEl ? titleEl.textContent.trim() : "";
+      captionDesc.textContent = descEl ? descEl.textContent.trim() : "";
+
+      caption.classList.remove("visible");
+      // Wait a frame so the transition (rather than the initial state) animates in.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => caption.classList.add("visible"));
+      });
+    }
+
     modal.classList.remove("hidden");
     modal.focus();
   }
 
   function closeLightbox() {
+    caption.classList.remove("visible");
     modal.classList.add("hidden");
-    modal.querySelector("img").src = "";
+    modalImg.src = "";
+    if (activeCard) {
+      activeCard.classList.remove("flipped");
+      activeCard = null;
+    }
   }
 
   modal.addEventListener("click", (e) => {
@@ -216,13 +290,19 @@ function initCardLightbox() {
     card.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      openLightbox(img.src, img.alt);
+
+      if (noHover) {
+        card.classList.add("flipped");
+        activeCard = card;
+      }
+
+      openLightbox(img.dataset.full || img.src, img.alt, card);
     });
 
     card.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openLightbox(img.src, img.alt);
+        openLightbox(img.dataset.full || img.src, img.alt, card);
       }
     });
 
@@ -231,7 +311,7 @@ function initCardLightbox() {
 }
 
 // ==========================================================================
-// 6. PROJECT FILTERING
+// 7. PROJECT FILTERING
 // ==========================================================================
 function initProjectFilters() {
   const filterBar = document.querySelector(".projects-filters");
@@ -291,7 +371,7 @@ function initProjectFilters() {
 }
 
 // ==========================================================================
-// 7. INITIALIZATION
+// 8. INITIALIZATION
 // ==========================================================================
 
 /**
@@ -301,6 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations();
   initSmoothScroll();
   initActiveNav();
+  initMobileNav();
   initCardLightbox();
   initProjectFilters();
 
@@ -308,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================================================
-// 8. CLEANUP (FOR SPA ENVIRONMENTS)
+// 9. CLEANUP (FOR SPA ENVIRONMENTS)
 // ==========================================================================
 
 /**
@@ -320,7 +401,7 @@ window.cleanupScrollObservers = () => {
 };
 
 // ==========================================================================
-// 9. MOUSE TRAIL EFFECT
+// 10. MOUSE TRAIL EFFECT
 // ==========================================================================
 
 const canvas = document.getElementById("trailCanvas");

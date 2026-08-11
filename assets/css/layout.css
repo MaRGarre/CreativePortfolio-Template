@@ -35,7 +35,7 @@
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url(https://ik.imagekit.io/MaRGarre/marowo-20250530-181443.jpg);
+  background-image: url(https://ik.imagekit.io/MaRGarre/marowo-20250530-181443.jpg?tr=w-1920,q-80);
   background-size: cover; /* ensure it fills the hero */
   background-position: center 20%; /* raise the visible area a bit */
   opacity: 50%;
@@ -101,6 +101,16 @@
   font-weight: 700;
   color: var(--color-text-muted);
   margin-bottom: var(--space-lg);
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-xl);
+  }
 }
 
 /* --------------------------------------------------------------------------

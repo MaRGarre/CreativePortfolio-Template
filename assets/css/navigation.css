@@ -69,6 +69,119 @@
     0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
 }
 
+/* Language switcher */
+.lang-switch {
+  position: relative;
+}
+
+.lang-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  width: 34px;
+  height: 24px;
+  padding: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.lang-toggle-btn:hover,
+.lang-toggle-btn:focus-visible {
+  color: white;
+  border-color: white;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 130px;
+  list-style: none;
+  background: rgba(20, 20, 20, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 4px;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 10;
+}
+
+.lang-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-option:hover,
+.lang-option:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.lang-option.active {
+  color: rgb(231, 19, 19);
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  /* Center the toggle button itself, not just its (wider) dropdown,
+     so it lines up with the other nav links above it. */
+  .lang-switch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* The mobile menu clips overflow while collapsing, so an
+     absolutely-positioned dropdown gets cut off. Lay it out in
+     normal flow instead, expanding/collapsing with max-height. */
+  .lang-dropdown {
+    position: static;
+    min-width: 0;
+    width: 160px;
+    margin: 0 auto;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    max-height: 0;
+    overflow: hidden;
+    border-width: 0;
+    padding: 0;
+    transition: max-height 0.25s ease, margin-top 0.25s ease, border-width 0.25s ease;
+  }
+
+  .lang-dropdown.open {
+    max-height: 120px;
+    margin-top: 8px;
+    border-width: 1px;
+    padding: 4px;
+  }
+}
+
 /* --------------------------------------------------------------------------
    FIX NAV HEIGHT + CONTENT OFFSET
    -------------------------------------------------------------------------- */
@@ -76,4 +189,83 @@
 /* Push content below fixed nav */
 main {
   padding-top: var(--nav-height);
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE MENU (hamburger) — hidden by default, only shown ≤640px
+   -------------------------------------------------------------------------- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 0 5px #e71313, 0 0 10px #e71313;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Hide the decorative heart wherever the centered nav-links/logo
+   text would collide with it or crowd it (covers mobile through
+   small-laptop widths, with a comfortable margin once it reappears) */
+@media (max-width: 1100px) {
+  .nav-heart {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+
+    padding: var(--space-lg) 0;
+    background: rgba(201, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+  }
+
+  .nav-links.open {
+    max-height: 60vh;
+    opacity: 1;
+  }
 }

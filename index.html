@@ -4,30 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Artístico Marina Garre</title>
+    <meta
+      name="description"
+      content="Marina Garre — Freelance illustrator and graphic designer. Traditional and digital illustration, graphic design, and photography portfolio."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Portfolio Artístico Marina Garre" />
+    <meta
+      property="og:description"
+      content="Marina Garre — Freelance illustrator and graphic designer. Traditional and digital illustration, graphic design, and photography portfolio."
+    />
+    <meta
+      property="og:image"
+      content="https://ik.imagekit.io/MaRGarre/marowo-20250530-181443.jpg?tr=w-1200,q-80"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Portfolio Artístico Marina Garre" />
+    <meta
+      name="twitter:description"
+      content="Marina Garre — Freelance illustrator and graphic designer. Traditional and digital illustration, graphic design, and photography portfolio."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ik.imagekit.io/MaRGarre/marowo-20250530-181443.jpg?tr=w-1200,q-80"
+    />
     <link
       rel="icon"
       type="image/png"
-      href="https://ik.imagekit.io/MaRGarre/Love_Heart_SVG.svg.png"
+      href="https://ik.imagekit.io/MaRGarre/Love_Heart_SVG.svg.png?tr=w-64,h-64"
     />
     <link rel="stylesheet" href="./assets/css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
       rel="stylesheet"
     />
+    <script src="./assets/js/i18n.js" defer></script>
     <script src="./assets/js/main.js" defer></script>
   </head>
   <body>
@@ -37,13 +54,41 @@
     <!-- Navigation -->
     <nav class="nav">
       <div class="nav-container">
-        <a href="#" class="nav-logo">PORTFOLIO ARTÍSTICO</a>
+        <a href="#" class="nav-logo" data-i18n="nav.logo">ARTISTIC PORTFOLIO</a>
         <div class="nav-heart">♥</div>
-        <ul class="nav-links">
-          <li><a href="#hero">Home</a></li>
-          <li><a href="#about">About Me</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          data-i18n-aria="nav.toggleAria"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero" data-i18n="nav.home">Home</a></li>
+          <li><a href="#about" data-i18n="nav.about">About Me</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          <li class="lang-switch">
+            <button
+              type="button"
+              class="lang-toggle-btn"
+              id="langToggleBtn"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-label="Change language"
+            >
+              <span class="lang-current">EN</span>
+            </button>
+            <ul class="lang-dropdown" id="langDropdown">
+              <li><button type="button" class="lang-option" data-lang="en">English</button></li>
+              <li><button type="button" class="lang-option" data-lang="es">Español</button></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </nav>
@@ -54,12 +99,12 @@
         <div class="hero-bg parallax-bg"></div>
         <div class="hero-content">
           <h1 class="hero-title animate-on-scroll">MARINA GARRE</h1>
-          <p class="hero-subtitle animate-on-scroll">Freelance Artist</p>
-          <a href="#projects" class="holographic-card">View My Work</a>
+          <p class="hero-subtitle animate-on-scroll" data-i18n="hero.subtitle">Freelance Artist</p>
+          <a href="#projects" class="holographic-card" data-i18n="hero.cta">View My Work</a>
         </div>
 
         <div class="scroll-indicator">
-          <span>Scroll</span>
+          <span data-i18n="hero.scroll">Scroll</span>
           <div class="scroll-arrow"></div>
         </div>
       </section>
@@ -67,22 +112,22 @@
       <!-- About Section -->
       <section id="about" class="section about">
         <div class="container">
-          <h2 class="section-title animate-on-scroll">About Me</h2>
+          <h2 class="section-title animate-on-scroll" data-i18n="about.title">About Me</h2>
           <div class="about-grid">
             <div class="about-text animate-on-scroll">
-              <p>
-                I have about 7 years of experience in the art world, drawing
-                both for fun and to keep improving. I’m currently studying
-                Graphic Design and Illustration, and I love creating characters,
-                exploring styles, and making fanart. My goal is to grow as an
+              <p data-i18n="about.text">
+                I've been drawing for about 7 years now, both for fun and
+                to keep improving my skills. I studied Graphic Design and
+                Illustration, and I love creating characters,
+                exploring different styles, and making fanart. My goal is to grow as an
                 artist and eventually work in illustration and concept art.
               </p>
-              <h2 class="title studies" style="font-weight: 700">Studies</h2>
+              <h2 class="title studies" style="font-weight: 700" data-i18n="studies.title">Studies</h2>
               <div class="studies">
                 <div class="study-item">
                   <img
                     class="study-logo"
-                    src="https://ik.imagekit.io/MaRGarre/png%20nuevo.png"
+                    src="https://ik.imagekit.io/MaRGarre/png%20nuevo.png?tr=w-340"
                     alt="ESCAV logo"
                     loading="lazy"
                   />
@@ -94,6 +139,7 @@
                     <div
                       class="study-status"
                       style="color: #27ae60; font-weight: 600"
+                      data-i18n="studies.completed"
                     >
                       Completed
                     </div>
@@ -102,7 +148,7 @@
                 <div class="study-item">
                   <img
                     class="study-logo"
-                    src="https://ik.imagekit.io/MaRGarre/udit%20png%20blanco.png"
+                    src="https://ik.imagekit.io/MaRGarre/udit%20png%20blanco.png?tr=w-340"
                     alt="UDIT logo"
                     loading="lazy"
                   />
@@ -113,9 +159,10 @@
                     </div>
                     <div
                       class="study-status"
-                      style="color: #e71313; font-weight: 600"
+                      style="color: #27ae60; font-weight: 600"
+                      data-i18n="studies.completed"
                     >
-                      In Process
+                      Completed
                     </div>
                   </div>
                 </div>
@@ -125,7 +172,7 @@
               <div class="skill-card">
                 <span class="skill-icon">
                   <span class="skill-icon">
-                    <img src="https://ik.imagekit.io/MaRGarre/svaas.webp" />
+                    <img src="https://ik.imagekit.io/MaRGarre/svaas.webp?tr=w-96,h-96" alt="Procreate icon" />
                   </span>
                 </span>
                 <h3><strong>Procreate</strong></h3>
@@ -135,7 +182,7 @@
               </div>
               <div class="skill-card">
                 <span class="skill-icon">
-                  <img src="//ik.imagekit.io/MaRGarre/edtfa.png" />
+                  <img src="//ik.imagekit.io/MaRGarre/edtfa.png?tr=w-96,h-96" alt="Photoshop icon" />
                 </span>
                 <h3><strong>Photoshop</strong></h3>
                 <div class="skill-bar">
@@ -145,7 +192,7 @@
               <div class="skill-card">
                 <span class="skill-icon">
                   <span class="skill-icon">
-                    <img src="https://ik.imagekit.io/MaRGarre/hmsrn.png" />
+                    <img src="https://ik.imagekit.io/MaRGarre/hmsrn.png?tr=w-96,h-96" alt="Illustrator icon" />
                   </span>
                 </span>
                 <h3><strong>Illustrator</strong></h3>
@@ -156,7 +203,7 @@
               <div class="skill-card">
                 <span class="skill-icon">
                   <span class="skill-icon">
-                    <img src="https://ik.imagekit.io/MaRGarre/bsbsfdb.png" />
+                    <img src="https://ik.imagekit.io/MaRGarre/bsbsfdb.png?tr=w-96,h-96" alt="InDesign icon" />
                   </span>
                 </span>
                 <h3><strong>InDesign</strong></h3>
@@ -172,27 +219,28 @@
       <!-- Projects Section -->
       <section id="projects" class="section projects">
         <div class="container">
-          <h2 class="section-title animate-on-scroll">Featured Projects</h2>
+          <h2 class="section-title animate-on-scroll" data-i18n="projects.title">Featured Projects</h2>
 
           <!-- Filter buttons for Featured Projects -->
           <div
             class="projects-filters"
             role="toolbar"
+            data-i18n-aria="projects.filtersAria"
             aria-label="Project filters"
           >
-            <button class="filter-btn" data-filter="all" aria-pressed="true">
+            <button class="filter-btn" data-filter="all" aria-pressed="true" data-i18n="projects.filter.all">
               All
             </button>
-            <button class="filter-btn" data-filter="traditional-art">
+            <button class="filter-btn" data-filter="traditional-art" data-i18n="projects.filter.traditional">
               Traditional Art
             </button>
-            <button class="filter-btn" data-filter="digital-art">
+            <button class="filter-btn" data-filter="digital-art" data-i18n="projects.filter.digital">
               Digital Art
             </button>
-            <button class="filter-btn" data-filter="graphic-design">
+            <button class="filter-btn" data-filter="graphic-design" data-i18n="projects.filter.graphic">
               Graphic Design
             </button>
-            <button class="filter-btn" data-filter="photography">
+            <button class="filter-btn" data-filter="photography" data-i18n="projects.filter.photography">
               Photography
             </button>
           </div>
@@ -205,13 +253,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Traditional A"
+                  data-i18n-aria="proj-itomori-aria"
+                  aria-label="Project: Itomori (Kimi No Na Wa), graphite drawing"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/mar-garre-20190929-223206.jpg"
-                        alt="Traditional A"
+                        src="https://ik.imagekit.io/MaRGarre/mar-garre-20190929-223206.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/mar-garre-20190929-223206.jpg?tr=w-1600,q-80"
+                        alt="Itomori scene from Kimi no Na wa, graphite pencil drawing"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -223,7 +273,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-itomori-title">
                           "Itomori (Kimi No Na Wa)"
                         </h3>
                         <p
@@ -231,6 +281,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-itomori-desc"
                         >
                           Graphite on paper.
                         </p>
@@ -247,13 +298,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Traditional B"
+                  data-i18n-aria="proj-objectilike-aria"
+                  aria-label="Project: Object I Like, ink drawing"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-20221027-174153.jpg"
-                        alt="Traditional B"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-20221027-174153.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-20221027-174153.jpg?tr=w-1600,q-80"
+                        alt="Object I Like, ink drawing on paper"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -265,12 +318,13 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">"Object I Like"</h3>
+                        <h3 style="margin: 0; color: white" data-i18n="proj-objectilike-title">"Object I Like"</h3>
                         <p
                           style="
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-objectilike-desc"
                         >
                           Ink on paper.
                         </p>
@@ -287,13 +341,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Traditional C"
+                  data-i18n-aria="proj-marmarina-aria"
+                  aria-label="Project: MaR & Marina, graphite drawing"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/mar-garre-mar-y-marina-by-margarre-ddffjx4-fullview.jpg"
-                        alt="Traditional C"
+                        src="https://ik.imagekit.io/MaRGarre/mar-garre-mar-y-marina-by-margarre-ddffjx4-fullview.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/mar-garre-mar-y-marina-by-margarre-ddffjx4-fullview.jpg?tr=w-1600,q-80"
+                        alt="MaR & Marina, graphite pencil drawing on paper"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -305,12 +361,13 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">"MaR & Marina"</h3>
+                        <h3 style="margin: 0; color: white" data-i18n="proj-marmarina-title">"MaR & Marina"</h3>
                         <p
                           style="
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-marmarina-desc"
                         >
                           Graphite on paper.
                         </p>
@@ -327,13 +384,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Traditional D"
+                  data-i18n-aria="proj-eastside-aria"
+                  aria-label="Project: Eastside (Sayra Splatoon), graphite drawing"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/mar-garre-20201123-210654.jpg"
-                        alt="Traditional D"
+                        src="https://ik.imagekit.io/MaRGarre/mar-garre-20201123-210654.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/mar-garre-20201123-210654.jpg?tr=w-1600,q-80"
+                        alt="Eastside (Sayra Splatoon), graphite pencil drawing"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -345,7 +404,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-eastside-title">
                           "Eastside (Sayra Splatoon)"
                         </h3>
                         <p
@@ -353,6 +412,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-eastside-desc"
                         >
                           Graphite on paper.
                         </p>
@@ -370,13 +430,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Digital A"
+                  data-i18n-aria="proj-shy-aria"
+                  aria-label="Project: Do you like being a good person!?, Procreate fanart"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767"
-                        alt="Digital A"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767&tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shy.jpg?updatedAt=1764862057767&tr=w-1600,q-80"
+                        alt="Do you like being a good person!?, digital fanart illustration made in Procreate"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -388,7 +450,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-shy-title">
                           "Do you like being a good person!?"
                         </h3>
                         <p
@@ -396,6 +458,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-shy-desc"
                         >
                           Procreate fanart.
                         </p>
@@ -412,13 +475,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Digital B"
+                  data-i18n-aria="proj-shine-aria"
+                  aria-label="Project: Shines on its own, Procreate fanart"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shine.jpg"
-                        alt="Digital B"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shine.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-marowo-fanart-shine.jpg?tr=w-1600,q-80"
+                        alt="Shines on its own, digital fanart illustration made in Procreate"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -430,7 +495,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-shine-title">
                           "Shines on its own"
                         </h3>
                         <p
@@ -438,6 +503,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-shine-desc"
                         >
                           Procreate fanart.
                         </p>
@@ -454,13 +520,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Digital C"
+                  data-i18n-aria="proj-selfportrait-aria"
+                  aria-label="Project: MaR Self-Portrait, Procreate self-portrait"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-mar-autorretrato.jpg"
-                        alt="Digital C"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-mar-autorretrato.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-mar-autorretrato.jpg?tr=w-1600,q-80"
+                        alt="MaR Self-Portrait, digital self-portrait made in Procreate"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -472,16 +540,17 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
-                          "MaR Selfportrait"
+                        <h3 style="margin: 0; color: white" data-i18n="proj-selfportrait-title">
+                          "MaR Self-Portrait"
                         </h3>
                         <p
                           style="
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-selfportrait-desc"
                         >
-                          Procreate selfportrait.
+                          Procreate self-portrait.
                         </p>
                       </div>
                     </div>
@@ -496,13 +565,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Digital D"
+                  data-i18n-aria="proj-heartsound-aria"
+                  aria-label="Project: The sound of the heart, Procreate fanart"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-mitsuaya.jpg"
-                        alt="Digital D"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-mitsuaya.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-mitsuaya.jpg?tr=w-1600,q-80"
+                        alt="The sound of the heart, digital fanart illustration made in Procreate"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -514,7 +585,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-heartsound-title">
                           "The sound of the heart"
                         </h3>
                         <p
@@ -522,6 +593,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-heartsound-desc"
                         >
                           Procreate fanart.
                         </p>
@@ -539,13 +611,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Graphic A"
+                  data-i18n-aria="proj-magazine-aria"
+                  aria-label="Project: Photography Magazine, Photoshop layout"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg"
-                        alt="Graphic A"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-revista-fotografia-marinagarre-pages-to-jpg-0002.jpg?tr=w-1600,q-80"
+                        alt="Photography Magazine, editorial layout design made in Photoshop"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -557,7 +631,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-magazine-title">
                           "Photography Magazine"
                         </h3>
                         <p
@@ -565,6 +639,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-magazine-desc"
                         >
                           Photoshop magazine.
                         </p>
@@ -581,13 +656,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Graphic B"
+                  data-i18n-aria="proj-exhibitionposter-aria"
+                  aria-label="Project: Photographic Exhibition Poster, Photoshop poster"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-cartel-exposicion-marinagarre-page-0001.jpg"
-                        alt="Graphic B"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-cartel-exposicion-marinagarre-page-0001.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-cartel-exposicion-marinagarre-page-0001.jpg?tr=w-1600,q-80"
+                        alt="Photographic Exhibition Poster, poster design made in Photoshop"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -599,7 +676,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-exhibitionposter-title">
                           "Photographic Exhibition Poster"
                         </h3>
                         <p
@@ -607,6 +684,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-exhibitionposter-desc"
                         >
                           Photoshop poster.
                         </p>
@@ -623,13 +701,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Graphic C"
+                  data-i18n-aria="proj-gameposters-aria"
+                  aria-label="Project: Video Game Posters Based on the Fundamentals of Graphic Design, Procreate posters"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-marinagarre-carteles-fundamentos-del-diseno-grafico-page-0009.jpg"
-                        alt="Graphic C"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-marinagarre-carteles-fundamentos-del-diseno-grafico-page-0009.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-marinagarre-carteles-fundamentos-del-diseno-grafico-page-0009.jpg?tr=w-1600,q-80"
+                        alt="Video Game Posters Based on the Fundamentals of Graphic Design, poster series made in Procreate"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -641,7 +721,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-gameposters-title">
                           "Video Game Posters Based on the Fundamentals of
                           Graphic Design"
                         </h3>
@@ -650,6 +730,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-gameposters-desc"
                         >
                           Procreate posters.
                         </p>
@@ -666,13 +747,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Graphic D"
+                  data-i18n-aria="proj-hotwheels-aria"
+                  aria-label="Project: Product photo Hotwheels x Initial D collaboration, Procreate and Photoshop poster"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-final-foto-producto-civic-initial-d.jpg"
-                        alt="Graphic D"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-final-foto-producto-civic-initial-d.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-final-foto-producto-civic-initial-d.jpg?tr=w-1600,q-80"
+                        alt="Product photo Hotwheels x Initial D collaboration, poster made with Procreate and Photoshop"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -684,7 +767,7 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
+                        <h3 style="margin: 0; color: white" data-i18n="proj-hotwheels-title">
                           "Product photo Hotwheels x Initial D collaboration"
                         </h3>
                         <p
@@ -692,6 +775,7 @@
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-hotwheels-desc"
                         >
                           Procreate and Photoshop poster.
                         </p>
@@ -709,13 +793,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Photo A"
+                  data-i18n-aria="proj-civicfront34-aria"
+                  aria-label="Project: Dreams Come True — Front Three-Quarter View, car photography"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-front-preset-antiguo.jpg"
-                        alt="Photo A"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-front-preset-antiguo.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-civic-34-front-preset-antiguo.jpg?tr=w-1600,q-80"
+                        alt="Honda Civic, front three-quarter view, car photography"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -727,16 +813,17 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
-                          "Dreams come true"
+                        <h3 style="margin: 0; color: white" data-i18n="proj-civicfront34-title">
+                          "Dreams Come True — Front Three-Quarter"
                         </h3>
                         <p
                           style="
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-civicfront34-desc"
                         >
-                          Canon EOS2000D and Photoshop car photoshoot.
+                          Canon EOS2000D and Photoshop car photoshoot, front three-quarter angle.
                         </p>
                       </div>
                     </div>
@@ -751,13 +838,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Photo B"
+                  data-i18n-aria="proj-civicrear-aria"
+                  aria-label="Project: Dreams Come True — Rear View, car photography"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-civic-trasera-preset-antiguo.jpg"
-                        alt="Photo B"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-civic-trasera-preset-antiguo.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-civic-trasera-preset-antiguo.jpg?tr=w-1600,q-80"
+                        alt="Honda Civic, rear view, car photography"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -769,16 +858,17 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
-                          "Dreams come true"
+                        <h3 style="margin: 0; color: white" data-i18n="proj-civicrear-title">
+                          "Dreams Come True — Rear"
                         </h3>
                         <p
                           style="
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-civicrear-desc"
                         >
-                          Canon EOS2000D and Photoshop car photoshoot.
+                          Canon EOS2000D and Photoshop car photoshoot, rear angle.
                         </p>
                       </div>
                     </div>
@@ -793,13 +883,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Photo C"
+                  data-i18n-aria="proj-civicfront-aria"
+                  aria-label="Project: Dreams Come True — Front View, car photography"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-civic-frontal-preset-antiguo.jpg"
-                        alt="Photo C"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-civic-frontal-preset-antiguo.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-civic-frontal-preset-antiguo.jpg?tr=w-1600,q-80"
+                        alt="Honda Civic, front view, car photography"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -811,16 +903,17 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
-                          "Dreams come true"
+                        <h3 style="margin: 0; color: white" data-i18n="proj-civicfront-title">
+                          "Dreams Come True — Front"
                         </h3>
                         <p
                           style="
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-civicfront-desc"
                         >
-                          Canon EOS2000D and Photoshop car photoshoot.
+                          Canon EOS2000D and Photoshop car photoshoot, front angle.
                         </p>
                       </div>
                     </div>
@@ -835,13 +928,15 @@
                   class="card"
                   role="button"
                   tabindex="0"
-                  aria-label="Project: Photo D"
+                  data-i18n-aria="proj-civicrear34-aria"
+                  aria-label="Project: Dreams Come True — Rear Three-Quarter View, car photography"
                 >
                   <div class="card-inner">
                     <div class="card-front">
                       <img
-                        src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg"
-                        alt="Photo D"
+                        src="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg?tr=w-600,q-75"
+                        data-full="https://ik.imagekit.io/MaRGarre/marowo-civic-34-trasera-preset-antiguo.jpg?tr=w-1600,q-80"
+                        alt="Honda Civic, rear three-quarter view, car photography"
                         loading="lazy"
                         style="
                           width: 100%;
@@ -853,16 +948,17 @@
                     </div>
                     <div class="card-back">
                       <div style="padding: 1rem; text-align: center">
-                        <h3 style="margin: 0; color: white">
-                          "Dreams come true"
+                        <h3 style="margin: 0; color: white" data-i18n="proj-civicrear34-title">
+                          "Dreams Come True — Rear Three-Quarter"
                         </h3>
                         <p
                           style="
                             color: rgba(255, 255, 255, 0.9);
                             font-size: 0.9rem;
                           "
+                          data-i18n="proj-civicrear34-desc"
                         >
-                          Canon EOS2000D and Photoshop car photoshoot.
+                          Canon EOS2000D and Photoshop car photoshoot, rear three-quarter angle.
                         </p>
                       </div>
                     </div>
@@ -877,7 +973,7 @@
       <!-- Stay Connected Section -->
       <section id="stay-connected" class="section stay-connected">
         <div class="container">
-          <h2 class="section-title animate-on-scroll">Stay Connected</h2>
+          <h2 class="section-title animate-on-scroll" data-i18n="stay.title">Stay Connected</h2>
           <div class="stay-content animate-on-scroll">
             <p
               class="animate-text"
@@ -886,10 +982,11 @@
                 color: var(--color-text-muted);
                 text-align: center;
               "
+              data-i18n="stay.text"
             >
-              Follow all my work, be the first to know when I release a new
-              project.<br />
-              I also invite you to check out my full portfolio on my ArtStation
+              Follow me for all my work, and be the first to know when I release
+              a new project.<br />
+              I'd also love for you to check out my full gallery on my ArtStation
               profile.
             </p>
 
@@ -912,7 +1009,7 @@
               >
                 <span class="skill-icon" style="width: 100px; height: 100px">
                   <img
-                    src="https://ik.imagekit.io/MaRGarre/AS-LOGO.webp"
+                    src="https://ik.imagekit.io/MaRGarre/AS-LOGO.webp?tr=w-200,h-200"
                     alt="ArtStation"
                     style="width: 100%; height: 100%"
                   />
@@ -923,7 +1020,7 @@
                 </p>
               </a>
               <a
-                href="https://www.instagram.com/marowo_ink?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D"
+                href="https://www.instagram.com/marowo_ink"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="skill-card"
@@ -945,7 +1042,7 @@
                   "
                 >
                   <img
-                    src="https://ik.imagekit.io/MaRGarre/Instagram_logo_2022.svg.webp"
+                    src="https://ik.imagekit.io/MaRGarre/Instagram_logo_2022.svg.webp?tr=w-200,h-200"
                     alt="Instagram"
                     style="width: 100%; height: 100%; object-fit: contain"
                   />
@@ -963,7 +1060,7 @@
       <!-- Contact Section -->
       <section id="contact" class="section contact">
         <div class="container">
-          <h2 class="section-title animate-on-scroll">Contact</h2>
+          <h2 class="section-title animate-on-scroll" data-i18n="contact.title">Contact</h2>
           <div class="contact-content animate-on-scroll">
             <p
               class="animate-text"
@@ -972,6 +1069,7 @@
                 color: var(--color-text-muted);
                 text-align: center;
               "
+              data-i18n="contact.text"
             >
               I'm currently open to commissions, freelance projects, or
               collaborations.<br />
@@ -995,6 +1093,8 @@
                 name="name"
                 placeholder="Name"
                 aria-label="Name"
+                data-i18n-placeholder="contact.name"
+                data-i18n-aria="contact.name"
                 required
                 style="
                   padding: 12px 16px;
@@ -1009,6 +1109,8 @@
                 name="email"
                 placeholder="Email"
                 aria-label="Email"
+                data-i18n-placeholder="contact.email"
+                data-i18n-aria="contact.email"
                 required
                 style="
                   padding: 12px 16px;
@@ -1023,6 +1125,8 @@
                 rows="4"
                 placeholder="Message"
                 aria-label="Message"
+                data-i18n-placeholder="contact.message"
+                data-i18n-aria="contact.message"
                 required
                 style="
                   padding: 12px 16px;
@@ -1032,7 +1136,7 @@
                   color: var(--color-text);
                 "
               ></textarea>
-              <button type="submit" class="btn" style="align-self: start">
+              <button type="submit" class="btn" style="align-self: start" data-i18n="contact.send">
                 Send Message
               </button>
             </form>
@@ -1043,13 +1147,12 @@
       <!-- Footer -->
       <footer class="footer">
         <div class="container">
-          <p>&copy; 2025 Portfolio Artístico Marina Garre.</p>
-          <a href="#hero" class="back-to-top" aria-label="Back to top"></a>
+          <p data-i18n="footer.copyright">&copy; 2025 Portfolio Artístico Marina Garre.</p>
+          <a href="#hero" class="back-to-top" data-i18n-aria="footer.backToTop" aria-label="Back to top"></a>
         </div>
       </footer>
 
     </main>
     <canvas id="trailCanvas"></canvas>
-    <script src="main.js"></script>
   </body>
 </html>
