@@ -1050,6 +1050,29 @@
   background: var(--color-skill-fill);
 }
 
+/* On mouse/trackpad devices, categories expand on hover — no click
+   needed. Touch devices keep the click-driven .open class above,
+   since there's no real hover state to expand on. :focus-within
+   mirrors the same behavior for keyboard navigation. */
+@media (hover: hover) {
+  .accordion-item:hover .accordion-header,
+  .accordion-item:focus-within .accordion-header {
+    background: rgba(231, 19, 19, 0.12);
+    color: var(--color-skill-fill);
+  }
+
+  .accordion-item:hover .accordion-icon,
+  .accordion-item:focus-within .accordion-icon {
+    transform: rotate(-135deg);
+  }
+
+  .accordion-item:hover .accordion-panel,
+  .accordion-item:focus-within .accordion-panel {
+    max-height: 600px;
+    padding: var(--space-xs) var(--space-lg) var(--space-md);
+  }
+}
+
 @media (max-width: 640px) {
   .services-accordion {
     grid-template-columns: 1fr;

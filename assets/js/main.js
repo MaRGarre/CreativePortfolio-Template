@@ -375,15 +375,31 @@ function initProjectFilters() {
 // ==========================================================================
 
 /**
- * Toggle each services category open/closed independently on click.
+ * Touch devices (no real hover state) toggle each category open/closed
+ * on tap, via the .open class. Hover-capable devices (desktop) expand
+ * and collapse purely on :hover/:focus-within in CSS — no click
+ * needed — so here we only keep aria-expanded in sync for them.
  */
 function initServicesAccordion() {
-  document.querySelectorAll(".accordion-header").forEach((header) => {
-    header.addEventListener("click", () => {
-      const item = header.closest(".accordion-item");
-      const isOpen = item.classList.toggle("open");
-      header.setAttribute("aria-expanded", String(isOpen));
-    });
+  const noHover = window.matchMedia("(hover: none)").matches;
+
+  document.querySelectorAll(".accordion-item").forEach((item) => {
+    const header = item.querySelector(".accordion-header");
+    if (!header) return;
+
+    if (noHover) {
+      header.addEventListener("click", () => {
+        const isOpen = item.classList.toggle("open");
+        header.setAttribute("aria-expanded", String(isOpen));
+      });
+    } else {
+      item.addEventListener("mouseenter", () =>
+        header.setAttribute("aria-expanded", "true")
+      );
+      item.addEventListener("mouseleave", () =>
+        header.setAttribute("aria-expanded", "false")
+      );
+    }
   });
 }
 
