@@ -944,3 +944,119 @@
       0 0 40px rgba(231, 19, 19, 0.4);
   }
 }
+
+/* --------------------------------------------------------------------------
+   SERVICES ACCORDION
+   -------------------------------------------------------------------------- */
+.services-accordion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.services-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.services-column + .services-column {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.accordion-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.accordion-header:hover,
+.accordion-header:focus-visible {
+  color: var(--color-skill-fill);
+}
+
+.accordion-item.open .accordion-header {
+  background: rgba(231, 19, 19, 0.12);
+  color: var(--color-skill-fill);
+}
+
+.accordion-icon {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.open .accordion-icon {
+  transform: rotate(-135deg);
+}
+
+.accordion-panel {
+  list-style: none;
+  margin: 0;
+  padding: 0 var(--space-lg);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+}
+
+.accordion-item.open .accordion-panel {
+  max-height: 600px;
+  padding: var(--space-xs) var(--space-lg) var(--space-md);
+}
+
+.accordion-panel li {
+  position: relative;
+  padding: var(--space-xs) 0 var(--space-xs) 1.1em;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: var(--text-sm);
+  font-weight: 400;
+}
+
+.accordion-panel li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--color-skill-fill);
+}
+
+@media (max-width: 640px) {
+  .services-accordion {
+    grid-template-columns: 1fr;
+  }
+
+  .services-column + .services-column {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}

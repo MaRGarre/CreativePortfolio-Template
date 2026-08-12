@@ -371,7 +371,24 @@ function initProjectFilters() {
 }
 
 // ==========================================================================
-// 8. INITIALIZATION
+// 8. SERVICES ACCORDION
+// ==========================================================================
+
+/**
+ * Toggle each services category open/closed independently on click.
+ */
+function initServicesAccordion() {
+  document.querySelectorAll(".accordion-header").forEach((header) => {
+    header.addEventListener("click", () => {
+      const item = header.closest(".accordion-item");
+      const isOpen = item.classList.toggle("open");
+      header.setAttribute("aria-expanded", String(isOpen));
+    });
+  });
+}
+
+// ==========================================================================
+// 9. INITIALIZATION
 // ==========================================================================
 
 /**
@@ -384,12 +401,13 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initCardLightbox();
   initProjectFilters();
+  initServicesAccordion();
 
   console.log("Portfolio initialized");
 });
 
 // ==========================================================================
-// 9. CLEANUP (FOR SPA ENVIRONMENTS)
+// 10. CLEANUP (FOR SPA ENVIRONMENTS)
 // ==========================================================================
 
 /**
@@ -401,7 +419,7 @@ window.cleanupScrollObservers = () => {
 };
 
 // ==========================================================================
-// 10. MOUSE TRAIL EFFECT
+// 11. MOUSE TRAIL EFFECT
 // ==========================================================================
 
 const canvas = document.getElementById("trailCanvas");
