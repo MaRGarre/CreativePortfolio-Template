@@ -989,7 +989,7 @@
   font-weight: 700;
   text-align: left;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.5s ease, background 0.5s ease;
 }
 
 .accordion-header:hover,
@@ -1009,7 +1009,7 @@
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
   transform: rotate(45deg);
-  transition: transform 0.3s ease;
+  transition: transform 0.6s var(--ease-out);
 }
 
 .accordion-item.open .accordion-icon {
@@ -1022,7 +1022,7 @@
   padding: 0 var(--space-lg);
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.35s ease;
+  transition: max-height 0.7s var(--ease-out), padding 0.7s var(--ease-out);
 }
 
 .accordion-item.open .accordion-panel {
@@ -1036,7 +1036,23 @@
   color: rgba(255, 255, 255, 0.68);
   font-size: var(--text-sm);
   font-weight: 400;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: 0s;
 }
+
+.accordion-item.open .accordion-panel li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.accordion-panel li:nth-child(1) { transition-delay: 0.08s; }
+.accordion-panel li:nth-child(2) { transition-delay: 0.14s; }
+.accordion-panel li:nth-child(3) { transition-delay: 0.2s; }
+.accordion-panel li:nth-child(4) { transition-delay: 0.26s; }
+.accordion-panel li:nth-child(5) { transition-delay: 0.32s; }
+.accordion-panel li:nth-child(6) { transition-delay: 0.38s; }
 
 .accordion-panel li::before {
   content: "";
@@ -1070,6 +1086,12 @@
   .accordion-item:focus-within .accordion-panel {
     max-height: 600px;
     padding: var(--space-xs) var(--space-lg) var(--space-md);
+  }
+
+  .accordion-item:hover .accordion-panel li,
+  .accordion-item:focus-within .accordion-panel li {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
